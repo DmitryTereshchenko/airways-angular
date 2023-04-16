@@ -6,6 +6,8 @@ on:
       - master
     paths-ignore:
       - '.github/workflows/*'
+env:
+  BASE_PATH: './dist/airways'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-files
-          path: ./dist
+          path: ${{ env.BASE_PATH }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -34,9 +36,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-files
-          path: ./dist
+          path: ${{ env.BASE_PATH }}
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ${{ env.BASE_PATH }}
