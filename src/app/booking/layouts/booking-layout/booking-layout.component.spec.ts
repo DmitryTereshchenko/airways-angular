@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NotFoundPageComponent } from './not-found-page.component';
+import { BookingLayoutComponent } from './booking-layout.component';
 
-describe('NotFoundPageComponent', () => {
-  let component: NotFoundPageComponent;
-  let fixture: ComponentFixture<NotFoundPageComponent>;
+describe('BookingLayoutComponent', () => {
+  let component: BookingLayoutComponent;
+  let fixture: ComponentFixture<BookingLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NotFoundPageComponent],
+      declarations: [BookingLayoutComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NotFoundPageComponent);
+    fixture = TestBed.createComponent(BookingLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

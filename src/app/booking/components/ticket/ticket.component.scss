@@ -1,0 +1,21 @@
+:host {
+  width: 100vw;
+  margin: 0 auto;
+  display: block;
+  padding: 20px 0 0;
+}
+.ticket {
+  max-width: 1130px;
+  margin: 0 auto;
+
+  &__way {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #11397e;
+    display: flex;
+    gap: 20px;
+  }
+}

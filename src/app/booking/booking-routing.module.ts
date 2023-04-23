@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { FlightsComponent } from './components/flights/flights.component';
+import { BookingLayoutComponent } from './layouts/booking-layout/booking-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FlightsComponent,
+    component: BookingLayoutComponent,
   },
 ];
 @NgModule({
