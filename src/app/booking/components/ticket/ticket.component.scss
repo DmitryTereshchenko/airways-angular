@@ -3,6 +3,11 @@
   margin: 0 auto;
   display: block;
   padding: 20px 0 0;
+  ::ng-deep {
+    .mat-mdc-tab-header .mdc-tab {
+      height: 83px;
+    }
+  }
 }
 .ticket {
   max-width: 1130px;
@@ -17,5 +22,36 @@
     color: #11397e;
     display: flex;
     gap: 20px;
+  }
+}
+.slider {
+  &__label {
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto";
+    font-style: normal;
+    min-width: 165px;
+    align-items: center;
+  }
+  &__date {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+  }
+  &__week {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #74767a;
+  }
+  &__money {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #11397e;
+  }
+  &__svg {
+    width: 24px;
+    height: 24px;
   }
 }

@@ -6,4 +6,26 @@
     />
     <span>Dublin to Warsaw Modlin </span>
   </div>
+  <div class="slider">
+    <mat-tab-group>
+      <mat-tab *ngFor="let tab of lotsOfTabs" [disabled]="tab.money === ''">
+        <ng-template mat-tab-label>
+          <div class="slider__label">
+            <span class="slider__date">{{ tab.date }}</span>
+            <span class="slider__week">{{ tab.week }}</span>
+            <ng-container *ngIf="tab.money !== ''; else airSvg">
+              <span class="slider__money">€{{ tab.money }}</span>
+            </ng-container>
+          </div>
+        </ng-template>
+        <ng-template #airSvg>
+          <img
+            class="slider__svg"
+            src="../../../../assets/images/svg/Icon_air.svg"
+            alt="airplanemode"
+          />
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>
