@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="booking-container header-helper">
+    <form [formGroup]="bookingForm">
+      <div class="booking-section">
+        <h2 class="booking-title">
+          <span class="passengers-icon"></span>Passengers
+        </h2>
+        <p class="booking-subtitle">
+          Enter the passenger's names as they appear on document (passport or
+          ID).
+        </p>
+
+        <ul>
+          <li
+            class="passenger-item booking-block"
+            *ngFor="let item of passengerList; index as i">
+            <pre>{{ i + 1 }}</pre>
+            <pre>{{ item }}</pre>
+            <app-passenger-item></app-passenger-item>
+          </li>
+        </ul>
+      </div>
+
+      <div class="booking-section">
+        <h2 class="booking-title">
+          <span class="contact-icon"></span>Contact details
+        </h2>
+        <p class="booking-subtitle">
+          We need contact details to be able to deliver the latest information
+          regarding your flight.
+        </p>
+        <div class="booking-block">
+          <div class="booking-form-row">
+            <div class="booking-form-cell">
+              <mat-form-field appearance="fill">
+                <mat-label>Country code*</mat-label>
+                <mat-select>
+                  <mat-option value="one">Belarus(+375)</mat-option>
+                  <mat-option value="two">Poland(+48)</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="booking-form-cell">
+              <mat-form-field>
+                <mat-label>Mobile phone number*</mat-label>
+                <input
+                  matInput
+                  placeholder="e.g. 11111111111"
+                  class="width200"
+                />
+              </mat-form-field>
+            </div>
+            <div class="booking-form-cell">
+              <mat-form-field>
+                <mat-label>Email*</mat-label>
+                <input matInput placeholder="e.g. example@email.com" />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-buttons">
+        <button mat-button color="primary">Back</button>
+        <button mat-raised-button color="primary">Continue</button>
+      </div>
+    </form>
+  </div>
+</div>
