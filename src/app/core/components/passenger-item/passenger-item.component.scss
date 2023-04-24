@@ -1,0 +1,73 @@
+:host {
+  ::ng-deep {
+    .mdc-text-field {
+      background: #F4F6F9;
+      border-radius: 4px;
+      border: 0.5px solid rgba(116, 118, 122, 0.6);
+    }
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before{
+      border: 0;
+    }
+    .mdc-text-field--filled .mdc-line-ripple::after{
+      border-radius: 4px;
+    }
+    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{
+      color: #49454F;
+    }
+    .mat-mdc-form-field-infix{
+      width: 150px;
+    }
+    .mat-button-toggle-button{
+      height: 56px;
+      background: #F4F6F9;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      .mat-button-toggle-label-content span{
+        padding: 0 10px;
+      }
+    }
+    .mat-button-toggle-checked{
+      .mat-button-toggle-button{
+        color: #11397E;
+      }
+      .mat-button-toggle-label-content span{
+        padding-left: 16px;
+        padding-right: 4px;
+      }
+    }
+    .mat-button-toggle-group-appearance-standard{
+      border-color:rgba(116, 118, 122, 0.6);
+      height: 56px;
+      background: #F4F6F9;
+    }
+  }
+}
+
+.booking-form-row{
+  display: flex;
+  gap: 20px;
+}
+
+.special-assistance{
+  background: no-repeat 0px url("/assets/special-assist_icon.svg");
+  height: 20px;
+  width: 20px;
+}
+
+.checked-icon{
+  position: absolute;
+  width: 12px;
+  height: 9px;
+}
+.mat-button-toggle-checked .checked-icon{
+  margin-top: 19px;
+  background: no-repeat  url("/assets/checked_icon.svg");
+}
+
+.passenger-title{
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #10264C;
+}
