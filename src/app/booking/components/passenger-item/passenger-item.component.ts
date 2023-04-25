@@ -8,4 +8,7 @@ import { Component, Input } from '@angular/core';
 export class PassengerItemComponent {
   @Input()
   public passenger!: string;
+
+  @Input()
+  public index!: number;
 }

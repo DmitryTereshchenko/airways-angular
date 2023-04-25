@@ -19,8 +19,6 @@ import {CoreRoutingModule} from "./core-routing.module";
     FooterComponent,
     MainPageComponent,
     RouteSearchComponent,
-    BookingPageComponent,
-    PassengerItemComponent,
   ],
   imports: [
     CommonModule,
