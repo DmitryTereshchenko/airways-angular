@@ -24,25 +24,31 @@ jobs:
         run: npm ci
       - name: Deploy project
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run deploy
-#      - name: Upload artifact
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: build-files
-#          path: ${{ env.BASE_PATH }}
-#  deploy:
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
-
-#      - name: Download artifact
-#        uses: actions/download-artifact@v3
-#        with:
-#          name: build-files
-#          path: ${{ env.BASE_PATH }}
-#      - name: Deploy to GitHub Pages
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          publish_dir: ${{ env.BASE_PATH }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-files
+          path: ${{ env.BASE_PATH }}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-files
+          path: ${{ env.BASE_PATH }}
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: ${{ env.BASE_PATH }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
