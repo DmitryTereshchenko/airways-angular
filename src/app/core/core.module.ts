@@ -9,9 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainPageComponent } from './pages/main/main-page/main-page.component';
 import { MaterialModule } from '../material/material.module';
 import { RouteSearchComponent } from './components/route-search/route-search.component';
-import { BookingPageComponent } from './pages/booking/booking-page/booking-page.component';
-import { PassengerItemComponent } from './components/passenger-item/passenger-item.component';
-import {CoreRoutingModule} from "./core-routing.module";
+import { CoreRoutingModule } from './core-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +26,7 @@ import {CoreRoutingModule} from "./core-routing.module";
     MatTooltipModule,
     MatButtonToggleModule,
     MatSlideToggleModule,
-    CoreRoutingModule
+    CoreRoutingModule,
   ],
   exports: [HeaderComponent, FooterComponent, MainPageComponent],
 })
