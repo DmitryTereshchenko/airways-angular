@@ -25,6 +25,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatDividerModule,
     MatSlideToggleModule,
     MatButtonToggleModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule {}
