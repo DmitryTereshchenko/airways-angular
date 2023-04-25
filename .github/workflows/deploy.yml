@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - development
     paths-ignore:
       - '.github/workflows/*'
 env:
@@ -21,24 +22,27 @@ jobs:
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install deps
         run: npm ci
-      - name: Build project
-        run: npm run build
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-files
-          path: ${{ env.BASE_PATH }}
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build-files
-          path: ${{ env.BASE_PATH }}
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ env.BASE_PATH }}
+      - name: Deploy project
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run deploy
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: build-files
+#          path: ${{ env.BASE_PATH }}
+#  deploy:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+
+#      - name: Download artifact
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: build-files
+#          path: ${{ env.BASE_PATH }}
+#      - name: Deploy to GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ${{ env.BASE_PATH }}
