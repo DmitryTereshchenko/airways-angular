@@ -1,4 +1,4 @@
-<h3 class="passenger-title">1. {{ passenger }}</h3>
+<h3 class="passenger-title">{{ index + 1 }}. {{ passenger | titlecase }}</h3>
 <div class="booking-form-row">
   <div class="booking-form-cell">
     <mat-form-field>
@@ -25,6 +25,7 @@
         aria-label="Info"
         matTooltip="Add the passenger's name as it is written on their documents (passport or ID). Do not use any accents or special characters. Do not use a nickname. "
         matTooltipPosition="right"
+        matTooltipHideDelay="30000"
       >
         <mat-icon>info</mat-icon>
       </button>
