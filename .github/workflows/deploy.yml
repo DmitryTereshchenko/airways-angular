@@ -22,10 +22,6 @@ jobs:
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install deps
         run: npm ci
-      - name: Deploy project
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run deploy
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
