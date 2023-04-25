@@ -21,7 +21,9 @@ jobs:
           path: ~/.npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install deps
-        run: npm ci
+        run: |
+          npm ci
+          npm run build
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
