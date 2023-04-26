@@ -50,7 +50,7 @@
 }
 
 .special-assistance{
-  background: no-repeat 0px url("/assets/special-assist_icon.svg");
+  background: no-repeat 0px url("~src/assets/special-assist_icon.svg");
   height: 20px;
   width: 20px;
 }
@@ -62,7 +62,7 @@
 }
 .mat-button-toggle-checked .checked-icon{
   margin-top: 19px;
-  background: no-repeat  url("/assets/checked_icon.svg");
+  background: no-repeat  url("~src/assets/checked_icon.svg");
 }
 
 .passenger-title{
