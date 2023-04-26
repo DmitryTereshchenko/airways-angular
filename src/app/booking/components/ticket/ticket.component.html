@@ -1,9 +1,6 @@
 <div class="ticket">
   <div class="ticket__way">
-    <img
-      src="assets/images/svg/airplanemode_right.svg"
-      alt="airplanemode"
-    />
+    <img src="assets/images/svg/airplanemode_right.svg" alt="airplanemode" />
     <span>Dublin to Warsaw Modlin </span>
   </div>
   <div class="slider">
@@ -21,8 +18,10 @@
         <ng-template #airSvg>
           <img
             class="slider__svg"
-            src="assets/images/svg/Icon_air.svg"
-            alt="airplanemode"
+            ngSrc="assets/images/svg/Icon_air.svg"
+            alt="airplane-mode"
+            height="24"
+            width="24"
           />
         </ng-template>
       </mat-tab>
@@ -41,7 +40,12 @@
       <span class="air-time__line"></span>
       <div class="air-time__info">
         <span>2h 30m</span>
-        <img src="assets/images/svg/Icon_air_right.svg" alt="air" />
+        <img
+          ngSrc="assets/images/svg/Icon_air_right.svg"
+          alt="air"
+          height="24"
+          width="45"
+        />
         <span>Direct</span>
       </div>
       <span class="air-time__line"></span>

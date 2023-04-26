@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingLayoutComponent } from './layouts/booking-layout/booking-layout.component';
@@ -24,6 +24,7 @@ import { PassengerItemComponent } from './components/passenger-item/passenger-it
     MaterialModule,
     BookingRoutingModule,
     ReactiveFormsModule,
+    NgOptimizedImage,
   ],
 })
 export class BookingModule {}

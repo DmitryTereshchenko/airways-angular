@@ -12,8 +12,9 @@
 .ticket {
   max-width: 1130px;
   margin: 0 auto;
-  font-family: "Roboto";
+  font-family: "Roboto", serif;
   font-style: normal;
+  box-sizing: border-box;
   &__way {
     font-weight: 700;
     font-size: 24px;
@@ -29,7 +30,7 @@
   &__label {
     display: flex;
     flex-direction: column;
-    font-family: "Roboto";
+    font-family: "Roboto",serif;
     font-style: normal;
     min-width: 165px;
     align-items: center;
