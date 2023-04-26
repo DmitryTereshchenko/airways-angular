@@ -1,6 +1,6 @@
 <div class="container">
   <div class="booking-container header-helper">
-    <form [formGroup]="bookingForm">
+    <form [formGroup]="bookingForm" (submit)="onSubmit()">
       <div class="booking-section">
         <h2 class="booking-title">
           <span class="passengers-icon"></span>Passengers
@@ -34,22 +34,53 @@
         <div class="booking-block">
           <div class="booking-form-row">
             <div class="booking-form-cell">
-              <mat-form-field appearance="fill">
-                <mat-label>Country code*</mat-label>
-                <mat-select>
+              <mat-form-field class="country-code">
+                <mat-label>Country code</mat-label>
+                <mat-select formControlName="countryCode" required>
                   <mat-option value="one">Belarus(+375)</mat-option>
                   <mat-option value="two">Poland(+48)</mat-option>
                 </mat-select>
+                <mat-error
+                  *ngIf="
+                    bookingForm.controls['countryCode'].invalid &&
+                    bookingForm.controls['countryCode'].touched
+                  "
+                >
+                  <span
+                    *ngIf="bookingForm.controls['countryCode'].errors?.['required']"
+                    >Please select a country code</span
+                  >
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="booking-form-cell">
-              <mat-form-field>
-                <mat-label>Mobile phone number*</mat-label>
-                <input matInput placeholder="e.g. 11111111111" />
+              <mat-form-field class="phone-number">
+                <mat-label>Mobile phone number</mat-label>
+                <input
+                  matInput
+                  placeholder="e.g. 11111111111"
+                  formControlName="phoneNumber"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    bookingForm.controls['phoneNumber'].invalid &&
+                    bookingForm.controls['phoneNumber'].touched
+                  "
+                >
+                  <span
+                    *ngIf="bookingForm.controls['phoneNumber'].errors?.['required']"
+                    >Please enter an mobile phone number</span
+                  >
+                  <span
+                    *ngIf="bookingForm.controls['phoneNumber'].errors?.['pattern']"
+                    >Mobile phone number is invalid</span
+                  >
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="booking-form-cell">
-              <mat-form-field>
+              <mat-form-field class="email">
                 <mat-label>Email</mat-label>
                 <input
                   matInput
@@ -63,10 +94,11 @@
                     bookingForm.controls['email'].touched
                   "
                 >
-                  <span *ngIf="bookingForm.getError('required', 'email')"
+                  <span
+                    *ngIf="bookingForm.controls['email'].errors?.['required']"
                     >Please enter an email</span
                   >
-                  <span *ngIf="bookingForm.getError('email', 'email')"
+                  <span *ngIf="bookingForm.controls['email'].errors?.['email']"
                     >Email is invalid</span
                   >
                 </mat-error>

@@ -58,6 +58,13 @@
     .mdc-text-field--invalid{
       border: 0.5px solid #B3261E;
     }
+
+    .mat-mdc-form-field.email{
+      width: 420px;
+    }
+    .mat-mdc-form-field.phone-number, .mat-mdc-form-field.country-code{
+      width: 255px;
+    }
   }
 }
 .header-helper{
@@ -77,7 +84,7 @@
   gap: 12px;
   span{
     &.contact-icon{
-      background: no-repeat url("/assets/contact_icon.svg");
+      background: no-repeat url("~src/assets/contact_icon.svg");
       height: 24px;
       width: 24px;
       margin-top: 2px;
@@ -86,7 +93,7 @@
       height: 18px;
       width: 20px;
       margin-top: 4px;
-      background: no-repeat url("/assets/passengers_icon.svg");
+      background: no-repeat url("~src/assets/passengers_icon.svg");
     }
   }
 }
@@ -123,6 +130,7 @@ form{
   text-align: end;
   margin-bottom: 30px;
 }
+
 
 
 
