@@ -58,16 +58,16 @@ h3, h4, p{
   gap: 24px;
 }
 .summary__ticket {
-  width: 50%;
+  flex: 1;
 }
 .block-wrap{
   background: #fff;
   box-sizing: border-box;
-
   white-space: nowrap;
   flex-wrap: nowrap;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+  margin-bottom: 30px;
 }
 .flight-info__summary{
   height: 100px;
@@ -120,9 +120,56 @@ h3, h4, p{
   display: flex;
   justify-content: end;
   gap: 40px;
+  margin-top: 10px;
 }
 
 .total-block{
   display: flex;
   justify-content: end;
+  .block-wrap{
+    width: calc(50% - 12px);
+  }
+}
+.total-info{
+  padding: 24px 40px;
+}
+.total-passenger{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
+  letter-spacing: 0.5px;
+}
+.total-ticket__desc{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+.total-ticket{
+  margin-left: 40px;
+}
+.total-sum{
+  padding: 20px 40px;
+  border-top: 1px solid #F1F3F6;
+  display: flex;
+  justify-content: space-between;
+}
+.total-sum-text{
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.total-sum-number{
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #11397E;
 }
