@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { TicketData } from '../../constants/ticket-data';
 
 @Component({
   selector: 'app-ticket',
@@ -6,41 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./ticket.component.scss'],
 })
 export class TicketComponent {
-  public lotsOfTabs = [
-    {
-      date: '27 Feb',
-      week: 'Monday',
-      money: '',
-    },
-    {
-      date: '28 Feb',
-      week: 'Tuesday',
-      money: '',
-    },
-    {
-      date: '01 Mar',
-      week: 'Wednesday',
-      money: '146.70',
-    },
-    {
-      date: '02 Mar',
-      week: 'Thursday',
-      money: '110.61',
-    },
-    {
-      date: '03 Mar',
-      week: 'Friday',
-      money: '80.11',
-    },
-    {
-      date: '04 Mar',
-      week: 'Saturday',
-      money: '146.70',
-    },
-    {
-      date: '05 Mar',
-      week: 'Sunday',
-      money: '146.70',
-    },
-  ];
+  @Input() public ticketsData!: TicketData[];
+  public data: TicketData = {
+    date: new Date('2023-03-01'),
+    money: '',
+    durationTime: '1h 30m',
+    seats: 10,
+    flightTime: '8:40',
+    arrivalTime: '12:00',
+  };
+  public seatsClass = {
+    red: this.data.seats <= 30,
+    yellow: this.data.seats > 30,
+  };
+  public onTabChange(event: MatTabChangeEvent): void {
+    this.data = this.ticketsData[event.index];
+  }
 }

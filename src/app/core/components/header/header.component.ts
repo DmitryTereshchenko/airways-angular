@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-header',
@@ -14,4 +17,24 @@ export class HeaderComponent {
   ];
 
   public readonly currencies = ['EUR', 'USA', 'RUB', 'PLN'];
+  public selectedStepIndex = 0;
+  constructor(private router: Router, private location: Location) {
+    this.location.onUrlChange((url) => {
+      if (url === '/booking/flights') {
+        this.selectedStepIndex = 0;
+      }
+      if (url === '/booking/details') {
+        this.selectedStepIndex = 1;
+      }
+    });
+  }
+  public click(event: StepperSelectionEvent): void {
+    this.selectedStepIndex = event.selectedIndex;
+    if (event.selectedIndex === 0) {
+      this.router.navigate(['/booking/flights']);
+    }
+    if (event.selectedIndex === 1) {
+      this.router.navigate(['/booking/details']);
+    }
+  }
 }

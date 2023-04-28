@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-passenger-details',
@@ -9,7 +10,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class PassengerDetailsComponent implements OnInit {
   public bookingForm!: FormGroup;
   public passengerList = ['adult', 'child', 'child', 'infant'];
-
+  constructor(private location: Location) {}
+  public locationBack(): void {
+    this.location.back();
+  }
   public ngOnInit(): void {
     this.bookingForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
