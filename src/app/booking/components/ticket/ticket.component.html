@@ -1,14 +1,9 @@
 <div class="ticket">
   <div class="ticket__way">
-    <img
-      ngSrc="assets/images/svg/airplanemode_right.svg"
-      alt="airplane-mode"
-      height="24"
-      width="24"
-    />
+    <img [ngSrc]="image" alt="airplane-mode" height="24" width="24" />
     <span>Dublin to Warsaw Modlin </span>
   </div>
-  <div class="slider">
+  <div class="slider" *ngIf="isVisibleSlider">
     <mat-tab-group (selectedTabChange)="onTabChange($event)">
       <mat-tab *ngFor="let tab of ticketsData" [disabled]="tab.money === ''">
         <ng-template mat-tab-label>
@@ -45,12 +40,7 @@
       <span class="air-time__line"></span>
       <div class="air-time__info">
         <span>{{ data.durationTime }}</span>
-        <img
-          ngSrc="assets/images/svg/Icon_air_right.svg"
-          alt="air"
-          height="24"
-          width="45"
-        />
+        <img [ngSrc]="imageTimeTravel" alt="air" height="24" width="45" />
         <span>Direct</span>
       </div>
       <span class="air-time__line"></span>
@@ -75,8 +65,13 @@
       <span class="seats__text">Price</span>
       <span class="seats__price">€{{ data.money }}</span>
     </div>
-    <button mat-raised-button color="primary" class="select__button">
-      Select
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onChangeVisibleSlider()"
+      class="select__button"
+    >
+      {{ isVisibleSlider === true ? "Select" : "Edit" }}
     </button>
   </div>
 </div>

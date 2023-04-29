@@ -9,6 +9,9 @@ import { TicketData } from '../../constants/ticket-data';
 })
 export class TicketComponent {
   @Input() public ticketsData!: TicketData[];
+  @Input() public image!: string;
+  @Input() public imageTimeTravel!: string;
+
   public data: TicketData = {
     date: new Date('2023-03-01'),
     money: '',
@@ -17,11 +20,13 @@ export class TicketComponent {
     flightTime: '8:40',
     arrivalTime: '12:00',
   };
-  public seatsClass = {
-    red: this.data.seats <= 30,
-    yellow: this.data.seats > 30,
-  };
+
+  public isVisibleSlider = true;
   public onTabChange(event: MatTabChangeEvent): void {
     this.data = this.ticketsData[event.index];
+  }
+
+  public onChangeVisibleSlider(): void {
+    this.isVisibleSlider = !this.isVisibleSlider;
   }
 }

@@ -7,6 +7,10 @@
     .mat-mdc-tab-header .mdc-tab {
       height: 83px;
     }
+    .mat-mdc-tab:not(.mat-mdc-tab-disabled)
+    .mdc-tab-indicator__content--underline,{
+      border-color: #F1C933;
+    }
   }
 }
 .ticket {

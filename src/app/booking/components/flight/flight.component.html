@@ -1,6 +1,14 @@
 <app-edit></app-edit>
-<app-ticket [ticketsData]="from"></app-ticket>
-<app-ticket [ticketsData]="to"></app-ticket>
+<app-ticket
+  [ticketsData]="from"
+  [image]="svgFrom"
+  [imageTimeTravel]="svgTimeFrom"
+></app-ticket>
+<app-ticket
+  [ticketsData]="to"
+  [image]="svgTo"
+  [imageTimeTravel]="svgTimeTo"
+></app-ticket>
 <div class="buttons">
   <button
     (click)="locationBack()"

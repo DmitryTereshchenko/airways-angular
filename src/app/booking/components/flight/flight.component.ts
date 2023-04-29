@@ -8,7 +8,7 @@ import { TicketData } from '../../constants/ticket-data';
   styleUrls: ['./flight.component.scss'],
 })
 export class FlightComponent {
-  public from: TicketData[] = [
+  public to: TicketData[] = [
     {
       date: new Date('2023-02-27'),
       money: '',
@@ -68,7 +68,7 @@ export class FlightComponent {
     },
   ];
 
-  public to: TicketData[] = [
+  public from: TicketData[] = [
     {
       date: new Date('2023-03-16'),
       money: '',
@@ -127,6 +127,11 @@ export class FlightComponent {
       arrivalTime: '12:00',
     },
   ];
+
+  public svgFrom = 'assets/images/svg/airplanemode_right.svg';
+  public svgTo = 'assets/images/svg/airplanemode_left.svg';
+  public svgTimeTo = 'assets/images/svg/Icon_air_right.svg';
+  public svgTimeFrom = 'assets/images/svg/Icon_air_left.svg';
   constructor(private location: Location) {}
   public locationBack(): void {
     this.location.back();
