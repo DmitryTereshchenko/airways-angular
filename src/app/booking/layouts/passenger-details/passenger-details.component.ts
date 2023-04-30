@@ -15,11 +15,7 @@ import {
 export class PassengerDetailsComponent {
   public bookingForm!: FormGroup;
   public passengerList = ['adult', 'child', 'child', 'infant'];
-
-  private passengerForm = this.fb.group({
-    name: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-  });
+  // public passengerList = ['adult'];
 
   constructor(private fb: FormBuilder) {
     this.bookingForm = this.fb.group({
@@ -32,8 +28,11 @@ export class PassengerDetailsComponent {
     for (let i = 0; i < this.passengerList.length; i++) {
       const passengerForm = this.fb.group({
         passenger: [this.passengerList[i]],
-        name: [''],
-        lastName: [''],
+        name: ['', [Validators.required, Validators.pattern(/^\D+$/)]],
+        lastName: ['', [Validators.required, Validators.pattern(/^\D+$/)]],
+        dateOfBirth: ['', [Validators.required]],
+        sex: ['', [Validators.required]],
+        specialAssist: [''],
       });
       (<FormArray>this.bookingForm.controls['passengers']).push(passengerForm);
     }
@@ -50,5 +49,9 @@ export class PassengerDetailsComponent {
       return;
     }
     console.log(this.bookingForm.value);
+  }
+
+  public get passengers(): FormArray {
+    return this.bookingForm.controls['passengers'] as FormArray;
   }
 }

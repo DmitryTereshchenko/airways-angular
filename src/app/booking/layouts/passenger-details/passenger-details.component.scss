@@ -131,6 +131,36 @@ form{
   margin-bottom: 30px;
 }
 
+.booking-form-row{
+  display: flex;
+  gap: 20px;
+}
+
+.special-assistance{
+  background: no-repeat 0px url("~src/assets/special-assist_icon.svg");
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  margin-right: 7px;
+}
+
+.checked-icon{
+  position: absolute;
+  width: 12px;
+  height: 9px;
+}
+.mat-button-toggle-checked .checked-icon{
+  margin-top: 19px;
+  background: no-repeat  url("~src/assets/checked_icon.svg");
+}
+
+.passenger-title{
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #10264C;
+}
+
 
 
 
