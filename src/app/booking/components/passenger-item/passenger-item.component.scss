@@ -41,6 +41,12 @@
       height: 56px;
       background: #F4F6F9;
     }
+    .mdc-tooltip__surface{
+      background: #FFFFFF;
+      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      color: #000;
+    }
   }
 }
 
@@ -50,9 +56,11 @@
 }
 
 .special-assistance{
-  background: no-repeat 0px url("/assets/special-assist_icon.svg");
+  background: no-repeat 0px url("~src/assets/special-assist_icon.svg");
   height: 20px;
   width: 20px;
+  display: inline-block;
+  margin-right: 7px;
 }
 
 .checked-icon{
@@ -62,7 +70,7 @@
 }
 .mat-button-toggle-checked .checked-icon{
   margin-top: 19px;
-  background: no-repeat  url("/assets/checked_icon.svg");
+  background: no-repeat  url("~src/assets/checked_icon.svg");
 }
 
 .passenger-title{
