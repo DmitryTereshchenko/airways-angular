@@ -24,6 +24,7 @@ export class TicketComponent {
   public isSliderVisible = true;
 
   public isFlightVisible = false;
+
   public onTabChange(event: MatTabChangeEvent): void {
     this.data = this.ticketsData[event.index];
   }
