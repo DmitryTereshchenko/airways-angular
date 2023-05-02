@@ -17,14 +17,22 @@ export class HeaderComponent {
   ];
 
   public readonly currencies = ['EUR', 'USA', 'RUB', 'PLN'];
+
+  public isVisionStepper = false;
+
   public selectedStepIndex = 0;
   constructor(private router: Router, private location: Location) {
     this.location.onUrlChange((url) => {
+      if (url === '/') {
+        this.isVisionStepper = false;
+      }
       if (url === '/booking/flights') {
         this.selectedStepIndex = 0;
+        this.isVisionStepper = true;
       }
       if (url === '/booking/details') {
         this.selectedStepIndex = 1;
+        this.isVisionStepper = true;
       }
     });
   }

@@ -16,17 +16,25 @@ export class TicketComponent {
     date: new Date('2023-03-01'),
     money: '',
     durationTime: '1h 30m',
-    seats: 10,
-    flightTime: '8:40',
-    arrivalTime: '12:00',
+    seats: 0,
+    flightTime: '',
+    arrivalTime: '',
   };
 
-  public isVisibleSlider = true;
+  public isSliderVisible = true;
+
+  public isFlightVisible = false;
   public onTabChange(event: MatTabChangeEvent): void {
     this.data = this.ticketsData[event.index];
   }
 
   public onChangeVisibleSlider(): void {
-    this.isVisibleSlider = !this.isVisibleSlider;
+    this.isSliderVisible = !this.isSliderVisible;
+  }
+
+  public changeFlightsVisibility(): void {
+    if (!this.isFlightVisible) {
+      this.isFlightVisible = true;
+    }
   }
 }

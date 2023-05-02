@@ -3,8 +3,18 @@
     <img [ngSrc]="image" alt="airplane-mode" height="24" width="24" />
     <span>Dublin to Warsaw Modlin </span>
   </div>
-  <div class="slider" *ngIf="isVisibleSlider">
-    <mat-tab-group (selectedTabChange)="onTabChange($event)">
+  <div class="slider" *ngIf="isSliderVisible">
+    <mat-tab-group
+      (selectedTabChange)="onTabChange($event)"
+      (click)="changeFlightsVisibility()"
+      [ngClass]="
+        data.seats >= 50
+          ? 'green-border'
+          : data.seats <= 10
+          ? 'red-border'
+          : 'yellow-border'
+      "
+    >
       <mat-tab *ngFor="let tab of ticketsData" [disabled]="tab.money === ''">
         <ng-template mat-tab-label>
           <div class="slider__label">
@@ -27,7 +37,7 @@
       </mat-tab>
     </mat-tab-group>
   </div>
-  <div class="select">
+  <div class="select" *ngIf="isFlightVisible">
     <div class="date">
       <span class="date__week">{{ data.date | date : "EEE, d MMM y" }}</span>
       <div class="date__time">
@@ -58,7 +68,9 @@
     <div class="seats">
       <span
         class="seats__available"
-        [ngClass]="data.seats <= 30 ? 'red' : 'yellow'"
+        [ngClass]="
+          data.seats >= 50 ? 'green' : data.seats <= 10 ? 'red' : 'yellow'
+        "
         >{{ data.seats }} seats <br />
         available</span
       >
@@ -71,7 +83,7 @@
       (click)="onChangeVisibleSlider()"
       class="select__button"
     >
-      {{ isVisibleSlider === true ? "Select" : "Edit" }}
+      {{ isSliderVisible === true ? "Select" : "Edit" }}
     </button>
   </div>
 </div>
