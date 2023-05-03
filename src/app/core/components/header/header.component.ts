@@ -34,6 +34,10 @@ export class HeaderComponent {
         this.selectedStepIndex = 1;
         this.isVisionStepper = true;
       }
+      if (url === '/booking/summary') {
+        this.selectedStepIndex = 2;
+        this.isVisionStepper = true;
+      }
     });
   }
   public click(event: StepperSelectionEvent): void {
@@ -43,6 +47,9 @@ export class HeaderComponent {
     }
     if (event.selectedIndex === 1) {
       this.router.navigate(['/booking/details']);
+    }
+    if (event.selectedIndex === 2) {
+      this.router.navigate(['/booking/summary']);
     }
   }
 }

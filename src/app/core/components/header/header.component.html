@@ -12,14 +12,13 @@
       <mat-step>
         <ng-template matStepLabel>Flights</ng-template>
       </mat-step>
-      <mat-step routerLink="/booking/details">
+      <mat-step>
         <ng-template matStepLabel>Passengers</ng-template>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Review & Payment</ng-template>
       </mat-step>
     </mat-horizontal-stepper>
-
     <div class="actions">
       <mat-form-field appearance="outline">
         <mat-select [value]="dateFormats[0]">

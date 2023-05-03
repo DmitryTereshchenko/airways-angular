@@ -140,6 +140,7 @@ export class FlightComponent {
   public svgTo = 'assets/images/svg/airplanemode_left.svg';
   public svgTimeTo = 'assets/images/svg/Icon_air_right.svg';
   public svgTimeFrom = 'assets/images/svg/Icon_air_left.svg';
+
   constructor(private location: Location, private store: Store) {}
   public locationBack(): void {
     this.location.back();

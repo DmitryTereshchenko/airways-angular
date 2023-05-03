@@ -15,7 +15,7 @@ const routes: Routes = [
     component: PassengerDetailsComponent,
   },
   {
-    path: 'summary',
+    path: 'booking/summary',
     component: SummaryComponent,
   },
 ];
