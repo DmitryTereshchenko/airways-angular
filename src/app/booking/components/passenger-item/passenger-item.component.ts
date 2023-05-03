@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-passenger-item',
@@ -7,8 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class PassengerItemComponent {
   @Input()
-  public passenger!: string;
+  public index!: number;
 
   @Input()
-  public index!: number;
+  public passengers!: FormArray;
 }

@@ -10,6 +10,7 @@ import { EditComponent } from './components/edit/edit.component';
 import { MaterialModule } from '../material/material.module';
 import { PassengerDetailsComponent } from './layouts/passenger-details/passenger-details.component';
 import { PassengerItemComponent } from './components/passenger-item/passenger-item.component';
+import { SummaryComponent } from './layouts/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PassengerItemComponent } from './components/passenger-item/passenger-it
     EditComponent,
     PassengerDetailsComponent,
     PassengerItemComponent,
+    SummaryComponent,
   ],
   imports: [
     CommonModule,

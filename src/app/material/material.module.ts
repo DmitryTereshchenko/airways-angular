@@ -24,12 +24,12 @@ import { CdkStepperModule, STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatNativeDateModule,
     MatInputModule,
     MatTabsModule,
-    MatDividerModule,
-    MatSlideToggleModule,
-    MatButtonToggleModule,
     MatTooltipModule,
     MatStepperModule,
     CdkStepperModule,
+    MatDividerModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule,
   ],
   providers: [
     {

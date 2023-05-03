@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingLayoutComponent } from './layouts/booking-layout/booking-layout.component';
 import { PassengerDetailsComponent } from './layouts/passenger-details/passenger-details.component';
+import { SummaryComponent } from './layouts/summary/summary.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'booking/details',
     component: PassengerDetailsComponent,
+  },
+  {
+    path: 'summary',
+    component: SummaryComponent,
   },
 ];
 @NgModule({
