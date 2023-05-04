@@ -28,8 +28,8 @@ import { CdkStepperModule, STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatStepperModule,
     CdkStepperModule,
     MatDividerModule,
-    MatSlideToggleModule,
     MatButtonToggleModule,
+    MatSlideToggleModule,
   ],
   providers: [
     {
