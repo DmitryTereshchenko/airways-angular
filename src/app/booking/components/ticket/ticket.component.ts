@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { TicketData } from '../../constants/ticket-data';
 
 @Component({
   selector: 'app-ticket',
@@ -6,41 +8,34 @@ import { Component } from '@angular/core';
   styleUrls: ['./ticket.component.scss'],
 })
 export class TicketComponent {
-  public lotsOfTabs = [
-    {
-      date: '27 Feb',
-      week: 'Monday',
-      money: '',
-    },
-    {
-      date: '28 Feb',
-      week: 'Tuesday',
-      money: '',
-    },
-    {
-      date: '01 Mar',
-      week: 'Wednesday',
-      money: '146.70',
-    },
-    {
-      date: '02 Mar',
-      week: 'Thursday',
-      money: '110.61',
-    },
-    {
-      date: '03 Mar',
-      week: 'Friday',
-      money: '80.11',
-    },
-    {
-      date: '04 Mar',
-      week: 'Saturday',
-      money: '146.70',
-    },
-    {
-      date: '05 Mar',
-      week: 'Sunday',
-      money: '146.70',
-    },
-  ];
+  @Input() public ticketsData!: TicketData[];
+  @Input() public image!: string;
+  @Input() public imageTimeTravel!: string;
+
+  public data: TicketData = {
+    date: new Date('2023-03-01'),
+    money: '',
+    durationTime: '1h 30m',
+    seats: 0,
+    flightTime: '',
+    arrivalTime: '',
+  };
+
+  public isSliderVisible = true;
+
+  public isFlightVisible = false;
+
+  public onTabChange(event: MatTabChangeEvent): void {
+    this.data = this.ticketsData[event.index];
+  }
+
+  public onChangeVisibleSlider(): void {
+    this.isSliderVisible = !this.isSliderVisible;
+  }
+
+  public changeFlightsVisibility(): void {
+    if (!this.isFlightVisible) {
+      this.isFlightVisible = true;
+    }
+  }
 }

@@ -1,9 +1,29 @@
 <app-edit></app-edit>
-<app-ticket></app-ticket>
-<app-ticket></app-ticket>
+<app-ticket
+  [ticketsData]="(ticketsFrom$ | async) ?? from"
+  [image]="svgFrom"
+  [imageTimeTravel]="svgTimeFrom"
+></app-ticket>
+<app-ticket
+  [ticketsData]="(ticketsTo$ | async) ?? to"
+  [image]="svgTo"
+  [imageTimeTravel]="svgTimeTo"
+></app-ticket>
 <div class="buttons">
-  <button mat-button color="primary" class="buttons__back">Back</button>
-  <button mat-raised-button color="primary" class="buttons__continue">
+  <button
+    (click)="locationBack()"
+    mat-button
+    color="primary"
+    class="buttons__back"
+  >
+    Back
+  </button>
+  <button
+    routerLink="/booking/details"
+    mat-raised-button
+    color="primary"
+    class="buttons__continue"
+  >
     Continue
   </button>
 </div>

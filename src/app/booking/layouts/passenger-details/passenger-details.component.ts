@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,9 +10,8 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PassengerDetailsComponent {
   public bookingForm!: FormGroup;
   public passengerList = ['adult', 'child', 'child', 'infant'];
-  // public passengerList = ['adult'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private location: Location) {
     this.bookingForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
@@ -30,6 +30,10 @@ export class PassengerDetailsComponent {
       });
       (<FormArray>this.bookingForm.controls['passengers']).push(passengerForm);
     }
+  }
+
+  public locationBack(): void {
+    this.location.back();
   }
 
   public onSubmit(): void {

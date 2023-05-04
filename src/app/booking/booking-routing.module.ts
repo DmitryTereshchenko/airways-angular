@@ -11,11 +11,11 @@ const routes: Routes = [
     component: BookingLayoutComponent,
   },
   {
-    path: 'details',
+    path: 'booking/details',
     component: PassengerDetailsComponent,
   },
   {
-    path: 'summary',
+    path: 'booking/summary',
     component: SummaryComponent,
   },
 ];

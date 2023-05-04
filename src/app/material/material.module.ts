@@ -11,6 +11,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
+import { CdkStepperModule, STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @NgModule({
   exports: [
@@ -22,10 +24,18 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatNativeDateModule,
     MatInputModule,
     MatTabsModule,
-    MatDividerModule,
     MatTooltipModule,
-    MatButtonToggleModule,
+    MatStepperModule,
+    CdkStepperModule,
+    MatDividerModule,
     MatSlideToggleModule,
+    MatButtonToggleModule,
+  ],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false },
+    },
   ],
 })
 export class MaterialModule {}
