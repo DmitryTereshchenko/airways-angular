@@ -65,7 +65,7 @@ h3, h4, p{
   box-sizing: border-box;
   white-space: nowrap;
   flex-wrap: nowrap;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   margin-bottom: 30px;
 }
@@ -73,7 +73,7 @@ h3, h4, p{
   height: 100px;
   background: #F1F3F6;
   border-top: 3px solid #11397E;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 8px 8px 0 0;
 }
 .passenger-info__summary{
   border-top: 1px solid #F1F3F6;
@@ -118,14 +118,14 @@ h3, h4, p{
   text-align: end;
   margin-bottom: 30px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 40px;
   margin-top: 10px;
 }
 
 .total-block{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   .block-wrap{
     width: calc(50% - 12px);
   }
