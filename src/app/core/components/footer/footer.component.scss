@@ -1,7 +1,6 @@
 .footer {
   padding: 36px 0;
   font-size: 14px;
-
   .container {
     display: flex;
     justify-content: space-between;
@@ -20,5 +19,12 @@
   .payment-icons {
     display: flex;
     gap: 8px;
+  }
+}
+
+@media (max-width:700px) {
+  .payment, .container {
+    flex-direction: column;
+    text-align: center;
   }
 }

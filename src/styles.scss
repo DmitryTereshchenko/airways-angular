@@ -9,3 +9,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   max-width: 1128px;
   margin: 0 auto;
 }
+
+@media (max-width:1200px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width:370px) {
+  .container {
+    padding: 0px;
+  }
+}

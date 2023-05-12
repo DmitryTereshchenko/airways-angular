@@ -55,3 +55,9 @@
     }
   }
 }
+
+@media (max-width:550px) {
+  .additional-info {
+    flex-direction: column;
+  }
+}
