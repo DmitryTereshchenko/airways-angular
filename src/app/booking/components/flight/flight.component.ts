@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
+import { ChangeDateOnTicketsService } from '../services/change-date-on-tickets.service';
 import { TicketData } from '../../constants/ticket-data';
 import {
   selectTicketsFrom,
@@ -12,136 +13,34 @@ import {
   templateUrl: './flight.component.html',
   styleUrls: ['./flight.component.scss'],
 })
-export class FlightComponent {
+export class FlightComponent implements OnInit {
   public ticketsTo$ = this.store.select(selectTicketsTo);
   public ticketsFrom$ = this.store.select(selectTicketsFrom);
 
-  public to: TicketData[] = [
-    {
-      date: new Date('2023-02-27'),
-      money: '',
-      durationTime: '',
-      seats: 0,
-      flightTime: '',
-      arrivalTime: '',
-    },
-    {
-      date: new Date('2023-02-28'),
-      money: '',
-      durationTime: '',
-      seats: 0,
-      flightTime: '',
-      arrivalTime: '',
-    },
+  public to: TicketData[] = [];
 
-    {
-      date: new Date('2023-03-01'),
-      money: '146.70',
-      durationTime: '2h 30m',
-      seats: 100,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-    {
-      date: new Date('2023-03-02'),
-      money: '110.61',
-      durationTime: '30m',
-      seats: 100,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-    {
-      date: new Date('2023-03-03'),
-      money: '80.11',
-      durationTime: '3h 30m',
-      seats: 50,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-    {
-      date: new Date('2023-03-04'),
-      money: '146.70',
-      durationTime: '2h',
-      seats: 100,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-    {
-      date: new Date('2023-03-05'),
-      money: '146.70',
-      durationTime: '3h 30m',
-      seats: 30,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-  ];
+  public from: TicketData[] = [];
 
-  public from: TicketData[] = [
-    {
-      date: new Date('2023-03-16'),
-      money: '',
-      durationTime: '',
-      seats: 0,
-      flightTime: '',
-      arrivalTime: '',
-    },
-    {
-      date: new Date('2023-03-17'),
-      money: '',
-      durationTime: '',
-      seats: 0,
-      flightTime: '',
-      arrivalTime: '',
-    },
-
-    {
-      date: new Date('2023-03-18'),
-      money: '116.70',
-      durationTime: '2h 30m',
-      seats: 100,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-    {
-      date: new Date('2023-03-19'),
-      money: '80.61',
-      durationTime: '30m',
-      seats: 100,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-    {
-      date: new Date('2023-03-20'),
-      money: '80.11',
-      durationTime: '3h 30m',
-      seats: 50,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-    {
-      date: new Date('2023-03-21'),
-      money: '144.70',
-      durationTime: '2h',
-      seats: 100,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-    {
-      date: new Date('2023-03-22'),
-      money: '146.70',
-      durationTime: '3h 30m',
-      seats: 30,
-      flightTime: '8:40',
-      arrivalTime: '12:00',
-    },
-  ];
+  private numbers = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
 
   public svgFrom = 'assets/images/svg/airplanemode_right.svg';
   public svgTo = 'assets/images/svg/airplanemode_left.svg';
   public svgTimeTo = 'assets/images/svg/Icon_air_right.svg';
   public svgTimeFrom = 'assets/images/svg/Icon_air_left.svg';
 
-  constructor(private location: Location, private store: Store) {}
+  constructor(
+    private location: Location,
+    private store: Store,
+    private changeDateOnTicketsService: ChangeDateOnTicketsService
+  ) {}
+  public ngOnInit(): void {
+    this.changeDateOnTicketsService.changeDateTickets();
+    this.to = this.changeDateOnTicketsService.to.map((item, i) => {
+      item.date.setDate(item.date.getDate() + this.numbers[i]);
+      return item;
+    });
+    console.log(this.to);
+  }
   public locationBack(): void {
     this.location.back();
   }

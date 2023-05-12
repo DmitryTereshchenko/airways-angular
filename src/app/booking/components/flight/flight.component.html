@@ -1,11 +1,11 @@
 <app-edit></app-edit>
 <app-ticket
-  [ticketsData]="(ticketsFrom$ | async) ?? from"
+  [ticketsData]="(ticketsFrom$ | async) ?? []"
   [image]="svgFrom"
   [imageTimeTravel]="svgTimeFrom"
 ></app-ticket>
 <app-ticket
-  [ticketsData]="(ticketsTo$ | async) ?? to"
+  [ticketsData]="(ticketsTo$ | async) ?? []"
   [image]="svgTo"
   [imageTimeTravel]="svgTimeTo"
 ></app-ticket>

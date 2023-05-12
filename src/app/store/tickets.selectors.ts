@@ -5,9 +5,9 @@ const selectTicketFeature = createFeatureSelector<TicketState>('tickets');
 
 export const selectTicketsTo = createSelector(
   selectTicketFeature,
-  (ticketState) => ticketState.to
+  (ticketState) => ticketState.tickets
 );
 export const selectTicketsFrom = createSelector(
   selectTicketFeature,
-  (ticketState) => ticketState.from
+  (ticketState) => ticketState.tickets
 );
