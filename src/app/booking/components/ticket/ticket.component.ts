@@ -13,12 +13,13 @@ export class TicketComponent {
   @Input() public imageTimeTravel!: string;
 
   public data: TicketData = {
-    date: new Date('2023-03-01'),
-    money: '',
-    durationTime: '1h 30m',
-    seats: 0,
-    flightTime: '',
+    date: new Date(),
     arrivalTime: '',
+    departureTimeFrom: '',
+    departureTimeTo: '',
+    price: '',
+    seats: 30,
+    flightCode: '',
   };
 
   public isSliderVisible = true;

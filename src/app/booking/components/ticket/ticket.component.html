@@ -15,13 +15,13 @@
           : 'yellow-border'
       "
     >
-      <mat-tab *ngFor="let tab of ticketsData" [disabled]="tab.money === ''">
+      <mat-tab *ngFor="let tab of ticketsData" [disabled]="tab.price === ''">
         <ng-template mat-tab-label>
           <div class="slider__label">
             <span class="slider__date">{{ tab.date | date : "d MMM" }}</span>
             <span class="slider__week">{{ tab.date | date : "EEEE" }}</span>
-            <ng-container *ngIf="tab.money !== ''; else airSvg">
-              <span class="slider__money">€{{ tab.money }}</span>
+            <ng-container *ngIf="tab.price !== ''; else airSvg">
+              <span class="slider__money">€{{ tab.price }}</span>
             </ng-container>
           </div>
         </ng-template>
@@ -41,7 +41,7 @@
     <div class="date">
       <span class="date__week">{{ data.date | date : "EEE, d MMM y" }}</span>
       <div class="date__time">
-        <span class="date__time-hours">{{ data.flightTime }}</span>
+        <span class="date__time-hours">{{ data.departureTimeTo }}</span>
         <span class="date__time-utc">UTC +0</span>
       </div>
       <span class="date__from">Dublin</span>
@@ -49,7 +49,7 @@
     <div class="air-time">
       <span class="air-time__line"></span>
       <div class="air-time__info">
-        <span>{{ data.durationTime }}</span>
+        <span>{{ data.arrivalTime }}</span>
         <img [ngSrc]="imageTimeTravel" alt="air" height="24" width="45" />
         <span>Direct</span>
       </div>
@@ -59,7 +59,7 @@
       <span class="date__week">{{ data.date | date : "EEE, d MMM y" }}</span>
       <div class="date__time">
         <span class="date__time-utc">UTC +1</span>
-        <span class="date__time-hours">{{ data.arrivalTime }}</span>
+        <span class="date__time-hours">{{ data.departureTimeTo }}</span>
       </div>
       <span class="date__from float-right">Warsaw Modlin</span>
     </div>
@@ -75,7 +75,7 @@
         available</span
       >
       <span class="seats__text">Price</span>
-      <span class="seats__price">€{{ data.money }}</span>
+      <span class="seats__price">€{{ data.price }}</span>
     </div>
     <button
       mat-raised-button
