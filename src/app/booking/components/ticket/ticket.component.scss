@@ -223,3 +223,27 @@
 .green{
   background: rgba(40, 236, 19, 0.3);
 }
+@media (max-width: 870px) {
+  .select__flight, .select__FR{
+    display: none;
+  }
+  .select{
+    flex-wrap: wrap;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .air-time{
+    justify-content: center;
+    width: 100vw;
+  }
+  .date{
+    display: flex;
+    gap: 10px;
+  }
+  .seats, .select__button{
+    width: 100vw;
+  }
+}
+
