@@ -1,16 +1,150 @@
 import { createReducer, on } from '@ngrx/store';
-import { TicketState } from '../shared/models/ticket-state';
-import { loadGetTickets, loadGetTicketsSuccess } from './get-tickets.actions';
+import { TicketState } from '../../shared/models/ticket-state';
+import {
+  changeDateOnTicketsFrom,
+  changeDateOnTicketsTo,
+} from '../actions/get-tickets.actions';
+import { loadChangeCurrencys } from '../actions/change-currency.actions';
 
 export const initialState: TicketState = {
-  date: new Date('2023-05-10'),
-  tickets: [
+  dateFrom: new Date('2023-02-12'),
+  dateTo: new Date('2023-04-18'),
+  currency: 'EUR',
+  ticketsTo: [
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '147.40',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '145.40',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '140',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
     {
       date: new Date(),
       arrivalTime: '2h 50m',
       departureTimeFrom: '8:40',
       departureTimeTo: '7:40',
       price: '146.40',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '146',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '146',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '146',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '146',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '146',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '146',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '146',
+      seats: 30,
+      flightCode: 'FR 1925',
+    },
+  ],
+  ticketsFrom: [
+    {
+      date: new Date(),
+      arrivalTime: '2h 50m',
+      departureTimeFrom: '8:40',
+      departureTimeTo: '7:40',
+      price: '',
       seats: 30,
       flightCode: 'FR 1925',
     },
@@ -138,13 +272,47 @@ export const initialState: TicketState = {
 
 export const reducer = createReducer(
   initialState,
-
+  // on(
+  //   loadGetTicketsToSuccess,
+  //   (state, action): TicketState => ({
+  //     ...state,
+  //     ticketsTo: action.ticketsTo,
+  //     isLoading: true,
+  //   })
+  // ),
+  // on(
+  //   loadGetTicketsFromSuccess,
+  //   (state, action): TicketState => ({
+  //     ...state,
+  //     ticketsFrom: action.ticketsFrom,
+  //     isLoading: true,
+  //   })
+  // ),
   on(
-    loadGetTicketsSuccess,
+    changeDateOnTicketsTo,
     (state, action): TicketState => ({
       ...state,
-      tickets: action.tickets,
-      isLoading: true,
+      ticketsTo: state.ticketsTo.map((ticket) => ({
+        ...ticket,
+        date: action.date,
+      })),
+    })
+  ),
+  on(
+    changeDateOnTicketsFrom,
+    (state, action): TicketState => ({
+      ...state,
+      ticketsFrom: state.ticketsFrom.map((ticket) => ({
+        ...ticket,
+        date: action.date,
+      })),
+    })
+  ),
+  on(
+    loadChangeCurrencys,
+    (state, action): TicketState => ({
+      ...state,
+      currency: action.currency,
     })
   )
 );

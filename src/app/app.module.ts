@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { reducer } from './store/tickets.reducer';
+import { reducer } from './store/reducers/tickets.reducer';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 
 @NgModule({
