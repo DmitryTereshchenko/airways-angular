@@ -50,7 +50,7 @@
     .mat-horizontal-content-container{
       display: none;
     }
-    @media (max-width:500px) {
+    @media (min-width: 820px) and (max-width: 1070px){
       .mat-step-label{
         display: none;
       }
@@ -62,6 +62,24 @@
         min-width: 21px;
       }
     }
+    @media (max-width: 649px) {
+      .mat-step-label{
+        display: none;
+      }
+      .mat-horizontal-stepper-header{
+        padding: 0 5px;
+      }
+      .mat-stepper-horizontal-line{
+        margin: 0 -5px;
+        min-width: 21px;
+      }
+    }
+    @media (min-width: 650px) and (max-width: 819px) {
+      .mat-step-label{
+        display: block;
+      }
+    }
+
   }
 }
 
@@ -102,7 +120,7 @@
   }
 }
 
-@media (max-width:750px) {
+@media (max-width:820px) {
   .nav > .nav-btn {
     display: inline-block;
     position: absolute;

@@ -65,6 +65,11 @@
     .mat-mdc-form-field.phone-number, .mat-mdc-form-field.country-code{
       width: 255px;
     }
+    @media (max-width: 490px) {
+      .mat-mdc-form-field.email{
+        width: 255px;
+      }
+    }
   }
 }
 .header-helper{
@@ -109,6 +114,7 @@ ul li{
 .booking-form-row{
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .passenger-item.booking-block{
   margin-bottom: 20px;

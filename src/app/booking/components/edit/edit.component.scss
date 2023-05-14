@@ -42,3 +42,18 @@
     color: #11397e;
   }
 }
+@media (max-width: 580px) {
+  .edit{
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .edit{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
