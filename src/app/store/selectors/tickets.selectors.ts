@@ -20,3 +20,8 @@ export const selectGetDateFrom = createSelector(
   selectTicketFeature,
   (ticketState) => ticketState.dateFrom
 );
+
+export const selectChangeCurrency = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.currency
+);

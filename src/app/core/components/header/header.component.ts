@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { Store } from '@ngrx/store';
+import { loadChangeCurrencys } from '../../../store/actions/change-currency.actions';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +23,14 @@ export class HeaderComponent {
   public isVisionStepper = false;
 
   public selectedStepIndex = 0;
-  constructor(private router: Router, private location: Location) {
+
+  public selectedOption: 'EUR' | 'USA' | 'PLN' | 'RUB' = 'EUR';
+
+  constructor(
+    private router: Router,
+    private location: Location,
+    private store: Store
+  ) {
     this.location.onUrlChange((url) => {
       if (url === '/') {
         this.isVisionStepper = false;
@@ -40,6 +49,14 @@ export class HeaderComponent {
       }
     });
   }
+
+  public onOptionSelection(selectedValue: 'EUR' | 'USA' | 'PLN' | 'RUB'): void {
+    this.selectedOption = selectedValue;
+    this.store.dispatch(
+      loadChangeCurrencys({ currency: this.selectedOption ?? 'EUR' })
+    );
+  }
+
   public click(event: StepperSelectionEvent): void {
     this.selectedStepIndex = event.selectedIndex;
     if (event.selectedIndex === 0) {

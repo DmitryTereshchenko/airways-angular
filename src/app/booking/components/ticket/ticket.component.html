@@ -15,13 +15,16 @@
           : 'yellow-border'
       "
     >
-      <mat-tab *ngFor="let tab of ticketsData" [disabled]="tab.price === ''">
+      <mat-tab
+        *ngFor="let tab of ticketsData"
+        [disabled]="tab.price[currency] === ''"
+      >
         <ng-template mat-tab-label>
           <div class="slider__label">
             <span class="slider__date">{{ tab.date | date : "d MMM" }}</span>
             <span class="slider__week">{{ tab.date | date : "EEEE" }}</span>
-            <ng-container *ngIf="tab.price !== ''; else airSvg">
-              <span class="slider__money">€{{ tab.price }}</span>
+            <ng-container *ngIf="tab.price[currency] !== ''; else airSvg">
+              <span class="slider__money">{{ tab.price[currency] }}</span>
             </ng-container>
           </div>
         </ng-template>
@@ -41,7 +44,7 @@
     <div class="date">
       <span class="date__week">{{ data.date | date : "EEE, d MMM y" }}</span>
       <div class="date__time">
-        <span class="date__time-hours">{{ data.departureTimeTo }}</span>
+        <span class="date__time-hours">{{ data.departureTimeFrom }}</span>
         <span class="date__time-utc">UTC +0</span>
       </div>
       <span class="date__from">Dublin</span>
@@ -64,7 +67,7 @@
       <span class="date__from float-right">Warsaw Modlin</span>
     </div>
     <span class="select__flight">Flight no.</span>
-    <span class="select__FR">FR 1925</span>
+    <span class="select__FR">{{ data.flightCode }}</span>
     <div class="seats">
       <span
         class="seats__available"
@@ -75,12 +78,12 @@
         available</span
       >
       <span class="seats__text">Price</span>
-      <span class="seats__price">€{{ data.price }}</span>
+      <span class="seats__price">{{ data.price[currency] }}</span>
     </div>
     <button
       mat-raised-button
       color="primary"
-      (click)="onChangeVisibleSlider()"
+      (click)="dispatchTicketsAndChangeVisible()"
       class="select__button"
     >
       {{ isSliderVisible === true ? "Select" : "Edit" }}

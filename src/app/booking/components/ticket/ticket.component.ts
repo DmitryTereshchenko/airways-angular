@@ -1,24 +1,30 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Store } from '@ngrx/store';
+import { loadAddTicketFlights } from '../../../store/actions/add-ticket-flight.actions';
 import { TicketData } from '../../constants/ticket-data';
-import { ChangeDateOnTicketsService } from '../services/change-date-on-tickets.service';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.scss'],
 })
-export class TicketComponent {
+export class TicketComponent implements OnChanges {
   @Input() public ticketsData!: TicketData[];
   @Input() public image!: string;
   @Input() public imageTimeTravel!: string;
-  public to = this.changeDateOnTicketsService.to$;
+  @Input() public currency!: 'EUR' | 'USA' | 'PLN' | 'RUB';
   public data: TicketData = {
     date: new Date(),
     arrivalTime: '',
     departureTimeFrom: '',
     departureTimeTo: '',
-    price: '',
+    price: {
+      EUR: '',
+      USA: '',
+      RUB: '',
+      PLN: '',
+    },
     seats: 0,
     flightCode: '',
   };
@@ -27,13 +33,18 @@ export class TicketComponent {
 
   public isFlightVisible = false;
 
-  constructor(private changeDateOnTicketsService: ChangeDateOnTicketsService) {}
+  constructor(private store: Store) {}
+  public ngOnChanges(): void {
+    const [first] = this.ticketsData;
+    this.data = first;
+  }
 
   public onTabChange(event: MatTabChangeEvent): void {
     this.data = this.ticketsData[event.index];
   }
 
-  public onChangeVisibleSlider(): void {
+  public dispatchTicketsAndChangeVisible(): void {
+    this.store.dispatch(loadAddTicketFlights({ flights: [this.data] }));
     this.isSliderVisible = !this.isSliderVisible;
   }
 

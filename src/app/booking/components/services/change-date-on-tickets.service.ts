@@ -21,7 +21,7 @@ export class ChangeDateOnTicketsService {
         return (
           item.date.setFullYear(date.getFullYear()),
           item.date.setMonth(date.getMonth()),
-          item.date.setDate(date.getDate() + this.numbers[i])
+          item.date.setDate(date.getDate() + this.numbersFrom[i])
         );
       });
       return tickets;
@@ -45,5 +45,6 @@ export class ChangeDateOnTicketsService {
 
   private numbers = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
 
+  private numbersFrom = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   constructor(private store: Store) {}
 }

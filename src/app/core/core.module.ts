@@ -24,9 +24,9 @@ import { BookingModule } from '../booking/booking.module';
     FormsModule,
     CoreRoutingModule,
     ReactiveFormsModule,
-    BookingModule,
     HttpClientModule,
     RouterLink,
+    BookingModule,
   ],
   exports: [HeaderComponent, FooterComponent, MainPageComponent],
 })
