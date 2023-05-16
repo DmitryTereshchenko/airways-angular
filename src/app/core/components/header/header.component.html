@@ -42,7 +42,10 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-select [value]="currencies[0]">
+          <mat-select
+            [value]="currencies[0]"
+            (selectionChange)="onOptionSelection($event.value)"
+          >
             <mat-option *ngFor="let currency of currencies" [value]="currency">
               {{ currency }}
             </mat-option>

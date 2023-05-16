@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
+import { selectChangeCurrency } from '../../../store/selectors/tickets.selectors';
 import { ChangeDateOnTicketsService } from '../services/change-date-on-tickets.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class FlightComponent {
 
   public from$ = this.changeDateOnTicketsService.from$;
 
-  private numbers = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
+  public currency$ = this.store.select(selectChangeCurrency);
 
   public svgFrom = 'assets/images/svg/airplanemode_right.svg';
   public svgTo = 'assets/images/svg/airplanemode_left.svg';
@@ -22,8 +23,8 @@ export class FlightComponent {
 
   constructor(
     private location: Location,
-    private store: Store,
-    private changeDateOnTicketsService: ChangeDateOnTicketsService
+    private changeDateOnTicketsService: ChangeDateOnTicketsService,
+    private store: Store
   ) {}
 
   public locationBack(): void {
