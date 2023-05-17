@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { reducer } from './store/tickets.reducer';
+import { reducer } from './store/reducers/tickets.reducer';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 
 @NgModule({
@@ -20,6 +20,7 @@ import { ApiInterceptor } from './core/interceptors/api.interceptor';
     BrowserAnimationsModule,
     StoreModule.forRoot({ tickets: reducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+
     // EffectsModule.forRoot([]),
     // StoreRouterConnectingModule.forRoot(),
   ],

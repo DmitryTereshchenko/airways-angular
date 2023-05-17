@@ -1,11 +1,13 @@
 <app-edit></app-edit>
 <app-ticket
-  [ticketsData]="(ticketsFrom$ | async) ?? from"
+  [ticketsData]="(from$ | async) ?? []"
+  [currency]="(currency$ | async) ?? 'EUR'"
   [image]="svgFrom"
   [imageTimeTravel]="svgTimeFrom"
 ></app-ticket>
 <app-ticket
-  [ticketsData]="(ticketsTo$ | async) ?? to"
+  [ticketsData]="(to$ | async) ?? []"
+  [currency]="(currency$ | async) ?? 'EUR'"
   [image]="svgTo"
   [imageTimeTravel]="svgTimeTo"
 ></app-ticket>
