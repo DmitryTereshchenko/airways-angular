@@ -1,53 +1,39 @@
 <div class="route-search">
   <div class="container">
-    <div class="route-picker">
-      <mat-radio-group color="primary">
-        <mat-radio-button value="1">Round Trip</mat-radio-button>
-        <mat-radio-button value="2">One Way</mat-radio-button>
+    <form
+      class="search-form"
+      [formGroup]="searchForm"
+      (ngSubmit)="onSubmitForm()"
+    >
+      <mat-radio-group color="primary" [formControl]="searchForm.controls.way">
+        <mat-radio-button value="2">Round Trip</mat-radio-button>
+        <mat-radio-button value="1">One Way</mat-radio-button>
       </mat-radio-group>
-      <div class="destinations">
-        <mat-form-field appearance="outline">
-          <mat-label>From</mat-label>
-          <mat-select>
-            <mat-option> Dublin </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>To</mat-label>
-          <mat-select>
-            <mat-option> Wroclaw </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button class="destinations-reverse">
-          <img src="assets/reverse.png" alt="Reverse" />
-        </button>
-      </div>
 
-      <div class="additional-info">
-        <mat-form-field appearance="outline">
-          <mat-label>Enter a date range</mat-label>
-          <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" />
-            <input matEndDate placeholder="End date" />
-          </mat-date-range-input>
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-        </mat-form-field>
+      <app-destination-select
+        [isReverseButton]="true"
+        [form]="searchForm"
+        [formControlFrom]="searchForm.controls.from"
+        [formControlTo]="searchForm.controls.to"
+      ></app-destination-select>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Passengers</mat-label>
-          <mat-select value="Adults">
-            <mat-option value="Adults">
-              <span>Adults</span>
-              <mat-icon>add</mat-icon>
-              <mat-icon>remove</mat-icon>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
+      <app-destination-info
+        [isMultipleWay]="isMultipleWay()"
+        [form]="searchForm"
+        [formControlStartDate]="searchForm.controls.dateStart"
+        [formControlEndDate]="searchForm.controls.dateEnd"
+        [formControlPassengers]="searchForm.controls.passengers"
+      ></app-destination-info>
+
+      <button
+        type="submit"
+        class="search-form__btn"
+        mat-raised-button
+        color="primary"
+        [disabled]="searchForm.invalid"
+      >
+        Search
+      </button>
+    </form>
   </div>
 </div>

@@ -10,6 +10,7 @@ import { MaterialModule } from '../material/material.module';
 import { RouteSearchComponent } from './components/route-search/route-search.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { BookingModule } from '../booking/booking.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BookingModule } from '../booking/booking.module';
     BookingModule,
     HttpClientModule,
     RouterLink,
+    SharedModule,
   ],
   exports: [HeaderComponent, FooterComponent, MainPageComponent],
 })
