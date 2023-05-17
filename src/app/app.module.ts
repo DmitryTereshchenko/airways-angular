@@ -20,6 +20,7 @@ import { ApiInterceptor } from './core/interceptors/api.interceptor';
     BrowserAnimationsModule,
     StoreModule.forRoot({ tickets: reducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+
     // EffectsModule.forRoot([]),
     // StoreRouterConnectingModule.forRoot(),
   ],
