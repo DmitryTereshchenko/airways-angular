@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { selectChangeCurrency } from '../../../store/selectors/tickets.selectors';
 import { ChangeDateOnTicketsService } from '../services/change-date-on-tickets.service';
+import { TicketsFacade } from '../../services/tickets-facade.service';
 
 @Component({
   selector: 'app-flight',
@@ -24,7 +25,8 @@ export class FlightComponent {
   constructor(
     private location: Location,
     private changeDateOnTicketsService: ChangeDateOnTicketsService,
-    private store: Store
+    private store: Store,
+    public ticketsFacade: TicketsFacade
   ) {}
 
   public locationBack(): void {
