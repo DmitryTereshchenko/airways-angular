@@ -5,7 +5,12 @@
       [formGroup]="searchForm"
       (ngSubmit)="onSubmitForm()"
     >
-      <mat-radio-group color="primary" [formControl]="searchForm.controls.way">
+      <mat-radio-group
+        [(ngModel)]="selectedValue"
+        color="primary"
+        [formControl]="searchForm.controls.way"
+        (change)="handleRadioChange()"
+      >
         <mat-radio-button value="2">Round Trip</mat-radio-button>
         <mat-radio-button value="1">One Way</mat-radio-button>
       </mat-radio-group>
@@ -16,7 +21,6 @@
         [formControlFrom]="searchForm.controls.from"
         [formControlTo]="searchForm.controls.to"
       ></app-destination-select>
-
       <app-destination-info
         [isMultipleWay]="isMultipleWay()"
         [form]="searchForm"

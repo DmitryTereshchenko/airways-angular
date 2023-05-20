@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Store } from '@ngrx/store';
-import { loadChangeCurrencys } from '../../../store/actions/change-currency.actions';
+import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +28,7 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private location: Location,
-    private store: Store
+    private ticketsFacade: TicketsFacade
   ) {
     this.location.onUrlChange((url) => {
       if (url === '/') {
@@ -52,9 +51,7 @@ export class HeaderComponent {
 
   public onOptionSelection(selectedValue: 'EUR' | 'USA' | 'PLN' | 'RUB'): void {
     this.selectedOption = selectedValue;
-    this.store.dispatch(
-      loadChangeCurrencys({ currency: this.selectedOption ?? 'EUR' })
-    );
+    this.ticketsFacade.changeCurrency(selectedValue ?? 'EUR');
   }
 
   public click(event: StepperSelectionEvent): void {

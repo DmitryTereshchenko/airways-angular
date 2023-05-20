@@ -4,6 +4,8 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
+  OnInit,
   Optional,
   Output,
   Self,
@@ -17,9 +19,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
-import { Subject } from 'rxjs';
+import { Subject, Subscription, tap } from 'rxjs';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { Passengers } from '../../models/ticket-state';
+import { TicketsFacade } from '../../services/tickets-facade.service';
 import { Passenger } from '../../models/passenger.model';
 
 @Component({
@@ -31,7 +35,12 @@ import { Passenger } from '../../models/passenger.model';
   ],
 })
 export class PassengersPickerComponent
-  implements AfterViewInit, ControlValueAccessor, MatFormFieldControl<string>
+  implements
+    AfterViewInit,
+    ControlValueAccessor,
+    MatFormFieldControl<string>,
+    OnInit,
+    OnDestroy
 {
   @Input() public targetElement!: CdkOverlayOrigin;
   @Input() public passengersControl!: FormControl;
@@ -45,11 +54,13 @@ export class PassengersPickerComponent
   public overlayWidth = 0;
   public isListVisible = false;
 
-  public passengers: Passenger = {
+  public passengers: Passengers = {
     adult: 0,
     child: 0,
     infant: 0,
   };
+
+  public passengersSubscription!: Subscription;
 
   public id = `app-passenger-picker-${PassengersPickerComponent.nextId++}`;
   public stateChanges = new Subject<void>();
@@ -68,7 +79,8 @@ export class PassengersPickerComponent
   constructor(
     private fb: FormBuilder,
     private _elementRef: ElementRef<HTMLElement>,
-    @Optional() @Self() public ngControl: NgControl
+    @Optional() @Self() public ngControl: NgControl,
+    private ticketsFacade: TicketsFacade
   ) {
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
@@ -77,6 +89,31 @@ export class PassengersPickerComponent
     this.form = fb.group({
       passengers: [this.passengersString, Validators.required],
     });
+  }
+
+  public ngOnInit(): void {
+    this.passengersSubscription = this.form.valueChanges
+      .pipe(
+        tap(({ passengers }) => {
+          const passengersObject = passengers
+            .toLowerCase()
+            .split(', ')
+            .reduce(
+              (acc: Passengers, item: string) => {
+                const [number, key] = item.split(' ');
+                acc[key as keyof Passengers] = +number;
+                return acc;
+              },
+              { adult: 0, child: 0, infant: 0 }
+            );
+          this.ticketsFacade.addPassengers(passengersObject);
+        })
+      )
+      .subscribe();
+  }
+
+  public ngOnDestroy(): void {
+    this.passengersSubscription.unsubscribe();
   }
 
   public toggleListVisibility(): void {
