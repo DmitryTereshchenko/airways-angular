@@ -25,3 +25,23 @@ export const selectChangeCurrency = createSelector(
   selectTicketFeature,
   (ticketState) => ticketState.currency
 );
+
+export const selectGetSearchDateTo = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search.dateTo
+);
+
+export const selectGetSearchDateFrom = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search.dateFrom
+);
+
+export const selectGetSearchTo = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search.to
+);
+
+export const selectGetSearchFrom = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search.from
+);

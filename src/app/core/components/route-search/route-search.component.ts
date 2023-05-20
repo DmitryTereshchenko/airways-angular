@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { TicketsFacade } from '../../../booking/components/services/tickets-facade.service';
 import { ControlsOf, FormGroupTyped } from '../../../utils/form.util';
 import { SearchForm } from '../../../shared/models/search-form.model';
 
@@ -12,7 +13,13 @@ import { SearchForm } from '../../../shared/models/search-form.model';
 export class RouteSearchComponent implements OnInit {
   public searchForm!: FormGroupTyped<SearchForm>;
 
-  constructor(private fb: FormBuilder, private datePipe: DatePipe) {}
+  public selectedValue: string = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private datePipe: DatePipe,
+    private ticketsFacade: TicketsFacade
+  ) {}
 
   public get datePlusWeek(): Date {
     const date = new Date();
@@ -42,5 +49,9 @@ export class RouteSearchComponent implements OnInit {
       dateEnd: [this.datePlusWeek, Validators.required],
       passengers: ['', Validators.required],
     });
+  }
+
+  public handleRadioChange(): void {
+    this.ticketsFacade.addWay(this.selectedValue);
   }
 }

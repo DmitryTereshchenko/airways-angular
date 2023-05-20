@@ -1,8 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { Store } from '@ngrx/store';
-import { loadAddTicketFlights } from '../../../store/actions/add-ticket-flight.actions';
 import { TicketData } from '../../constants/ticket-data';
+import { TicketsFacade } from '../services/tickets-facade.service';
 
 @Component({
   selector: 'app-ticket',
@@ -33,7 +32,7 @@ export class TicketComponent implements OnChanges {
 
   public isFlightVisible = false;
 
-  constructor(private store: Store) {}
+  constructor(private ticketsFacade: TicketsFacade) {}
   public ngOnChanges(): void {
     const [first] = this.ticketsData;
     this.data = first;
@@ -44,7 +43,7 @@ export class TicketComponent implements OnChanges {
   }
 
   public dispatchTicketsAndChangeVisible(): void {
-    this.store.dispatch(loadAddTicketFlights({ flights: [this.data] }));
+    this.ticketsFacade.addTicketFlights([this.data]);
     this.isSliderVisible = !this.isSliderVisible;
   }
 
