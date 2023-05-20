@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TicketsFacade } from '../../../booking/components/services/tickets-facade.service';
+import { TicketsFacade } from '../../services/tickets-facade.service';
 import { City } from '../../models/city.model';
 
 @Component({
@@ -48,9 +48,11 @@ export class DestinationSelectComponent implements OnInit {
       { name: 'Dublin', shortCode: 'DUB', location: 'Ireland' },
     ];
   }
+
   public onSelectionChangeFrom(city: string): void {
     this.ticketsFacade.addFromOnSearch(city);
   }
+
   public onSelectionChangeTo(city: string): void {
     this.ticketsFacade.addToOnSearch(city);
   }

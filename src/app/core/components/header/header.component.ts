@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { TicketsFacade } from '../../../booking/components/services/tickets-facade.service';
+import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 
 @Component({
   selector: 'app-header',

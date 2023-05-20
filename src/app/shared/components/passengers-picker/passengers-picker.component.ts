@@ -19,11 +19,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
-import { Subject, map, tap, Subscription } from 'rxjs';
+import { Subject, Subscription, tap } from 'rxjs';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { Passengers } from '../../models/ticket-state';
-import { TicketsFacade } from '../../../booking/components/services/tickets-facade.service';
+import { TicketsFacade } from '../../services/tickets-facade.service';
 import { Passenger } from '../../models/passenger.model';
 
 @Component({
@@ -90,6 +90,7 @@ export class PassengersPickerComponent
       passengers: [this.passengersString, Validators.required],
     });
   }
+
   public ngOnInit(): void {
     this.passengersSubscription = this.form.valueChanges
       .pipe(

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { TicketsFacade } from '../services/tickets-facade.service';
+import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 
 @Component({
   selector: 'app-flight',
@@ -8,12 +8,6 @@ import { TicketsFacade } from '../services/tickets-facade.service';
   styleUrls: ['./flight.component.scss'],
 })
 export class FlightComponent {
-  public to$ = this.ticketsFacade.to$;
-
-  public from$ = this.ticketsFacade.from$;
-
-  public currency$ = this.ticketsFacade.currency$;
-
   public svgFrom = 'assets/images/svg/airplanemode_right.svg';
   public svgTo = 'assets/images/svg/airplanemode_left.svg';
   public svgTimeTo = 'assets/images/svg/Icon_air_right.svg';

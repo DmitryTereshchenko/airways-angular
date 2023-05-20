@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription, tap } from 'rxjs';
-import { TicketsFacade } from '../../../booking/components/services/tickets-facade.service';
+import { TicketsFacade } from '../../services/tickets-facade.service';
 import { Passenger } from '../../models/passenger.model';
 
 @Component({

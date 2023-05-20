@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { TicketData } from '../../constants/ticket-data';
-import { TicketsFacade } from '../services/tickets-facade.service';
+import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 
 @Component({
   selector: 'app-ticket',
@@ -33,6 +33,7 @@ export class TicketComponent implements OnChanges {
   public isFlightVisible = false;
 
   constructor(private ticketsFacade: TicketsFacade) {}
+
   public ngOnChanges(): void {
     const [first] = this.ticketsData;
     this.data = first;

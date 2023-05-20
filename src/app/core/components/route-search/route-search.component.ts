@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { TicketsFacade } from '../../../booking/components/services/tickets-facade.service';
+import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 import { ControlsOf, FormGroupTyped } from '../../../utils/form.util';
 import { SearchForm } from '../../../shared/models/search-form.model';
 

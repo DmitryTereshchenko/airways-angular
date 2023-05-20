@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatest, map } from 'rxjs';
-import { Passengers } from '../../../shared/models/ticket-state';
+import { Passengers } from '../models/ticket-state';
 import {
   loadAddDateFrom,
   loadAddDateTo,
@@ -9,8 +9,8 @@ import {
   loadAddTo,
   loadPassengers,
   loadWay,
-} from '../../../store/actions/add-search.actions';
-import { loadChangeCurrencys } from '../../../store/actions/change-currency.actions';
+} from '../../store/actions/add-search.actions';
+import { loadChangeCurrencys } from '../../store/actions/change-currency.actions';
 import {
   selectChangeCurrency,
   selectGetDateFrom,
@@ -19,9 +19,9 @@ import {
   selectGetSearchDateTo,
   selectTicketsFrom,
   selectTicketsTo,
-} from '../../../store/selectors/tickets.selectors';
-import { loadAddTicketFlights } from '../../../store/actions/add-ticket-flight.actions';
-import { TicketData } from '../../constants/ticket-data';
+} from '../../store/selectors/tickets.selectors';
+import { loadAddTicketFlights } from '../../store/actions/add-ticket-flight.actions';
+import { TicketData } from '../../booking/constants/ticket-data';
 
 @Injectable({
   providedIn: 'root',
