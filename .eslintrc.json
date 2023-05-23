@@ -148,6 +148,9 @@
       "files": [
         "*.ts"
       ],
+      "rules": {
+        "@ngrx/avoid-combining-selectors": "off"
+      },
       "extends": [
         "plugin:@ngrx/all-requiring-type-checking"
       ]

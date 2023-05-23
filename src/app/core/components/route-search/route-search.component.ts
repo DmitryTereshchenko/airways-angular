@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 import { ControlsOf, FormGroupTyped } from '../../../utils/form.util';
 import { SearchForm } from '../../../shared/models/search-form.model';
@@ -18,7 +19,8 @@ export class RouteSearchComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private datePipe: DatePipe,
-    private ticketsFacade: TicketsFacade
+    private ticketsFacade: TicketsFacade,
+    private router: Router
   ) {}
 
   public get datePlusWeek(): Date {
@@ -33,7 +35,7 @@ export class RouteSearchComponent implements OnInit {
   }
 
   public onSubmitForm(): void {
-    console.log(this.searchForm.value);
+    this.router.navigate(['/booking/flights']);
   }
 
   public isMultipleWay(): boolean {
