@@ -22,5 +22,29 @@
       width="16"
     />
   </div>
-  <button mat-button color="primary" class="edit__button">Edit</button>
+  <button
+    mat-button
+    color="primary"
+    class="edit__button"
+    (click)="onEditClick()"
+  >
+    Edit
+  </button>
 </div>
+<div class="container edit__form" *ngIf="isEditFormVisible">
+  <ng-container *ngTemplateOutlet="editForm"></ng-container>
+</div>
+
+<ng-template #editForm>
+  <app-destination-select
+    [form]="editFlightForm"
+    [formControlTo]="editFlightForm.controls.to"
+    [formControlFrom]="editFlightForm.controls.from"
+  ></app-destination-select>
+  <app-destination-info
+    [form]="editFlightForm"
+    [formControlPassengers]="editFlightForm.controls.passengers"
+    [formControlStartDate]="editFlightForm.controls.dateStart"
+    [formControlEndDate]="editFlightForm.controls.dateEnd"
+  ></app-destination-info>
+</ng-template>

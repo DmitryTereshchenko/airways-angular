@@ -1,11 +1,10 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   Input,
-  OnDestroy,
-  OnInit,
   Optional,
   Output,
   Self,
@@ -19,11 +18,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
-import { Subject, Subscription, tap } from 'rxjs';
+import { Subject } from 'rxjs';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { Passengers } from '../../models/ticket-state';
-import { TicketsFacade } from '../../services/tickets-facade.service';
 import { Passenger } from '../../models/passenger.model';
 
 @Component({
@@ -35,12 +33,7 @@ import { Passenger } from '../../models/passenger.model';
   ],
 })
 export class PassengersPickerComponent
-  implements
-    AfterViewInit,
-    ControlValueAccessor,
-    MatFormFieldControl<string>,
-    OnInit,
-    OnDestroy
+  implements AfterViewInit, ControlValueAccessor, MatFormFieldControl<string>
 {
   @Input() public targetElement!: CdkOverlayOrigin;
   @Input() public passengersControl!: FormControl;
@@ -60,8 +53,6 @@ export class PassengersPickerComponent
     infant: 0,
   };
 
-  public passengersSubscription!: Subscription;
-
   public id = `app-passenger-picker-${PassengersPickerComponent.nextId++}`;
   public stateChanges = new Subject<void>();
   public autofilled = false;
@@ -79,41 +70,16 @@ export class PassengersPickerComponent
   constructor(
     private fb: FormBuilder,
     private _elementRef: ElementRef<HTMLElement>,
-    @Optional() @Self() public ngControl: NgControl,
-    private ticketsFacade: TicketsFacade
+    private cdr: ChangeDetectorRef,
+    @Optional() @Self() public ngControl: NgControl
   ) {
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
 
     this.form = fb.group({
-      passengers: [this.passengersString, Validators.required],
+      passengers: ['', Validators.required],
     });
-  }
-
-  public ngOnInit(): void {
-    this.passengersSubscription = this.form.valueChanges
-      .pipe(
-        tap(({ passengers }) => {
-          const passengersObject = passengers
-            .toLowerCase()
-            .split(', ')
-            .reduce(
-              (acc: Passengers, item: string) => {
-                const [number, key] = item.split(' ');
-                acc[key as keyof Passengers] = +number;
-                return acc;
-              },
-              { adult: 0, child: 0, infant: 0 }
-            );
-          this.ticketsFacade.addPassengers(passengersObject);
-        })
-      )
-      .subscribe();
-  }
-
-  public ngOnDestroy(): void {
-    this.passengersSubscription.unsubscribe();
   }
 
   public toggleListVisibility(): void {
@@ -128,13 +94,17 @@ export class PassengersPickerComponent
       this.targetElement.elementRef.nativeElement.getBoundingClientRect();
     this.overlayWidth = width;
     this.triggerOrigin = this.targetElement.elementRef.nativeElement;
+    this.cdr.detectChanges();
   }
 
   public onCounterChanged<T extends keyof Passenger>(
     value: number,
     property: T
   ): void {
-    this.passengers[property] = value;
+    this.passengers = {
+      ...this.passengers,
+      [property]: value,
+    };
     this.value = this.passengersString;
   }
 
@@ -202,11 +172,11 @@ export class PassengersPickerComponent
   }
 
   public get shouldLabelFloat(): boolean {
-    return this.focused || !this.empty;
+    return this.focused || this.isListVisible;
   }
 
   public get errorState(): boolean {
-    return this.form.invalid;
+    return this.form.invalid && this.form.touched;
   }
 
   public onFocusIn(): void {

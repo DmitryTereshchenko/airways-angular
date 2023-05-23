@@ -11,6 +11,7 @@ import { MaterialModule } from '../material/material.module';
 import { PassengerDetailsComponent } from './layouts/passenger-details/passenger-details.component';
 import { PassengerItemComponent } from './components/passenger-item/passenger-item.component';
 import { SummaryComponent } from './layouts/summary/summary.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SummaryComponent } from './layouts/summary/summary.component';
     ReactiveFormsModule,
     NgOptimizedImage,
     RouterLink,
+    SharedModule,
   ],
   exports: [PassengerDetailsComponent, TicketComponent],
 })

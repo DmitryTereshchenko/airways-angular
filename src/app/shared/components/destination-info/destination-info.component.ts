@@ -23,6 +23,7 @@ export class DestinationInfoComponent implements OnInit, OnDestroy {
 
   public writePassengers(passengers: Passenger): void {
     this.formControlPassengers.setValue(passengers);
+    this.ticketsFacade.addPassengers(passengers);
   }
 
   public ngOnInit(): void {
