@@ -13,6 +13,19 @@ export class FlightComponent {
   public svgTimeTo = 'assets/images/svg/Icon_air_right.svg';
   public svgTimeFrom = 'assets/images/svg/Icon_air_left.svg';
 
+  public searchData = {
+    way: '',
+    from: '',
+    to: '',
+    dateStart: new Date(),
+    dateEnd: new Date(),
+    passengers: {
+      adult: 0,
+      child: 0,
+      infant: 0,
+    },
+  };
+
   constructor(
     private location: Location,
     public ticketsFacade: TicketsFacade

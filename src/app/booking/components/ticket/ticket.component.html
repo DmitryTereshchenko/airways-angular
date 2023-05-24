@@ -1,9 +1,18 @@
 <div class="ticket">
   <div class="ticket__way">
     <img [ngSrc]="image" alt="airplane-mode" height="24" width="24" />
-    <span>Dublin to Warsaw Modlin </span>
+    <span>{{ searchData.from }} to {{ searchData.to }} </span>
   </div>
   <div class="slider" *ngIf="isSliderVisible">
+    <ng-container
+      *ngTemplateOutlet="
+        appTpl;
+        context: {
+          facade: ticketsFacade.from$ | async,
+          tickets: from$ | async
+        }
+      "
+    ></ng-container>
     <mat-tab-group
       (selectedTabChange)="onTabChange($event)"
       (click)="changeFlightsVisibility()"
@@ -15,29 +24,31 @@
           : 'yellow-border'
       "
     >
-      <mat-tab
-        *ngFor="let tab of ticketsData"
-        [disabled]="tab.price[currency] === ''"
-      >
-        <ng-template mat-tab-label>
-          <div class="slider__label">
-            <span class="slider__date">{{ tab.date | date : "d MMM" }}</span>
-            <span class="slider__week">{{ tab.date | date : "EEEE" }}</span>
-            <ng-container *ngIf="tab.price[currency] !== ''; else airSvg">
-              <span class="slider__money">{{ tab.price[currency] }}</span>
-            </ng-container>
-          </div>
-        </ng-template>
-        <ng-template #airSvg>
-          <img
-            class="slider__svg"
-            ngSrc="assets/images/svg/Icon_air.svg"
-            alt="airplane-mode"
-            height="24"
-            width="24"
-          />
-        </ng-template>
-      </mat-tab>
+      <ng-template #appTpl let-facade="facade">
+        <mat-tab
+          *ngFor="let tab of tickets"
+          [disabled]="tab.price[currency] === ''"
+        >
+          <ng-template mat-tab-label>
+            <div class="slider__label">
+              <span class="slider__date">{{ tab.date | date : "d MMM" }}</span>
+              <span class="slider__week">{{ tab.date | date : "EEEE" }}</span>
+              <ng-container *ngIf="tab.price[currency] !== ''; else airSvg">
+                <span class="slider__money">{{ tab.price[currency] }}</span>
+              </ng-container>
+            </div>
+          </ng-template>
+          <ng-template #airSvg>
+            <img
+              class="slider__svg"
+              ngSrc="assets/images/svg/Icon_air.svg"
+              alt="airplane-mode"
+              height="24"
+              width="24"
+            />
+          </ng-template>
+        </mat-tab>
+      </ng-template>
     </mat-tab-group>
   </div>
   <div class="select" *ngIf="isFlightVisible">
@@ -47,7 +58,7 @@
         <span class="date__time-hours">{{ data.departureTimeFrom }}</span>
         <span class="date__time-utc">UTC +0</span>
       </div>
-      <span class="date__from">Dublin</span>
+      <span class="date__from">{{ searchData.from }}</span>
     </div>
     <div class="air-time">
       <span class="air-time__line"></span>
@@ -64,7 +75,7 @@
         <span class="date__time-utc">UTC +1</span>
         <span class="date__time-hours">{{ data.departureTimeTo }}</span>
       </div>
-      <span class="date__from float-right">Warsaw Modlin</span>
+      <span class="date__from float-right">{{ searchData.to }}</span>
     </div>
     <span class="select__flight">Flight no.</span>
     <span class="select__FR">{{ data.flightCode }}</span>

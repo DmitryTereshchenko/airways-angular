@@ -4,12 +4,14 @@
   [currency]="(ticketsFacade.currency$ | async) ?? 'EUR'"
   [image]="svgFrom"
   [imageTimeTravel]="svgTimeFrom"
+  [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
 ></app-ticket>
 <app-ticket
   [ticketsData]="(ticketsFacade.to$ | async) ?? []"
   [currency]="(ticketsFacade.currency$ | async) ?? 'EUR'"
   [image]="svgTo"
   [imageTimeTravel]="svgTimeTo"
+  [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
 ></app-ticket>
 <div class="buttons">
   <button

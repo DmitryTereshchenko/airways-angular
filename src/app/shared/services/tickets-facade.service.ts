@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest, map } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { Passengers } from '../models/ticket-state';
 import {
   loadAddDateFrom,
@@ -13,10 +13,9 @@ import {
 import { loadChangeCurrencys } from '../../store/actions/change-currency.actions';
 import {
   selectChangeCurrency,
-  selectGetDateFrom,
-  selectGetDateTo,
-  selectGetSearchDateFrom,
-  selectGetSearchDateTo,
+  selectGetSearch,
+  selectGetSearchDateEnd,
+  selectGetSearchDateStart,
   selectTicketsFrom,
   selectTicketsTo,
 } from '../../store/selectors/tickets.selectors';
@@ -29,12 +28,13 @@ import { TicketData } from '../../booking/constants/ticket-data';
 export class TicketsFacade {
   public currency$ = this.store.select(selectChangeCurrency);
 
-  public dateStart$ = this.store.select(selectGetSearchDateTo);
+  public selectGetSearch$ = this.store.select(selectGetSearch);
+  public selectGetSearchDateStart$ = this.store.select(
+    selectGetSearchDateStart
+  );
 
-  public dateEnd$ = this.store.select(selectGetSearchDateFrom);
-
-  public from$ = combineLatest([
-    this.store.select(selectGetDateFrom),
+  public from$: Observable<TicketData[]> = combineLatest([
+    this.store.select(selectGetSearchDateStart),
     this.store.select(selectTicketsFrom),
   ]).pipe(
     map(([date, tickets]) => {
@@ -50,7 +50,7 @@ export class TicketsFacade {
   );
 
   public to$ = combineLatest([
-    this.store.select(selectGetDateTo),
+    this.store.select(selectGetSearchDateEnd),
     this.store.select(selectTicketsTo),
   ]).pipe(
     map(([date, tickets]) => {
@@ -65,7 +65,7 @@ export class TicketsFacade {
     })
   );
 
-  private numbers = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
+  private numbers = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   private numbersFrom = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 

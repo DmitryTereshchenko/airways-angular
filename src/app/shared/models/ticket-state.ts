@@ -20,10 +20,11 @@ export interface Search {
   way: string;
   from: string;
   to: string;
-  dateTo: Date;
-  dateFrom: Date;
+  dateStart: Date;
+  dateEnd: Date;
   passengers: Passengers;
 }
+
 export interface Passengers {
   adult: number;
   child: number;
