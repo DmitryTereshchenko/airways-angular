@@ -1,48 +1,72 @@
-:host{
+:host {
   width: 100%;
   background: #F1F3F6;
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
   ::ng-deep {
+    .edit__button {
+      display: none;
+    }
+
     .mdc-text-field {
       background: #F4F6F9;
       border-radius: 4px;
       border: 0.5px solid rgba(116, 118, 122, 0.6);
     }
-    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before{
+
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
       border: 0;
     }
-    .mdc-text-field--filled .mdc-line-ripple::after{
+
+    .mdc-text-field--filled .mdc-line-ripple::after {
       border-radius: 4px;
     }
-    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label{
+
+    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
       color: #49454F;
     }
-    .mat-mdc-form-field-infix{
+
+    .mat-mdc-form-field-infix {
       width: 150px;
     }
-    .mat-button-toggle-button{
+
+    .mat-button-toggle-button {
       height: 56px;
       background: #F4F6F9;
       font-weight: 500;
       font-size: 14px;
       line-height: 20px;
-      .mat-button-toggle-label-content span{
+
+      .mat-button-toggle-label-content span {
         padding: 0 10px;
       }
     }
-    .mat-button-toggle-checked{
-      .mat-button-toggle-button{
+
+    .mat-button-toggle-checked {
+      .mat-button-toggle-button {
         color: #11397E;
       }
-      .mat-button-toggle-label-content span{
+
+      .mat-button-toggle-label-content span {
         padding-left: 16px;
         padding-right: 4px;
       }
     }
-    .mat-button-toggle-group-appearance-standard{
-      border-color:rgba(116, 118, 122, 0.6);
+
+    .mat-button-toggle-group-appearance-standard {
+      border-color: rgba(116, 118, 122, 0.6);
       height: 56px;
       background: #F4F6F9;
     }
+
     .mat-mdc-raised-button:not(:disabled) {
       background-color: #11397E;
       border-radius: 4px;
@@ -50,51 +74,58 @@
       height: 60px;
       box-shadow: none;
     }
-    .mat-mdc-button:not(:disabled){
+
+    .mat-mdc-button:not(:disabled) {
       color: #11397E;
       width: 126px;
       height: 60px;
     }
-    .mdc-text-field--invalid{
+
+    .mdc-text-field--invalid {
       border: 0.5px solid #B3261E;
     }
 
-    .mat-mdc-form-field.email{
+    .mat-mdc-form-field.email {
       width: 420px;
     }
-    .mat-mdc-form-field.phone-number, .mat-mdc-form-field.country-code{
+
+    .mat-mdc-form-field.phone-number, .mat-mdc-form-field.country-code {
       width: 255px;
     }
+
     @media (max-width: 490px) {
-      .mat-mdc-form-field.email{
+      .mat-mdc-form-field.email {
         width: 255px;
       }
     }
   }
 }
-.header-helper{
+
+.header-helper {
   margin-top: 160px;
 }
 
-.booking-container{
+.booking-container {
   width: 100%;
 }
 
-.booking-title{
+.booking-title {
   font-weight: 700;
   font-size: 24px;
   line-height: 28px;
   color: #11397E;
   display: flex;
   gap: 12px;
-  span{
-    &.contact-icon{
+
+  span {
+    &.contact-icon {
       background: no-repeat url("~src/assets/contact_icon.svg");
       height: 24px;
       width: 24px;
       margin-top: 2px;
     }
-    &.passengers-icon{
+
+    &.passengers-icon {
       height: 18px;
       width: 20px;
       margin-top: 4px;
@@ -102,71 +133,53 @@
     }
   }
 }
-ul, li{
+
+ul, li {
   margin: 0;
   padding: 0;
 }
 
-ul li{
+ul li {
   list-style-type: none;
 }
 
-.booking-form-row{
+.booking-form-row {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
-.passenger-item.booking-block{
+
+.passenger-item.booking-block {
   margin-bottom: 20px;
 }
-.booking-block{
+
+.booking-block {
   background: #FFFFFF;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 20px;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
-.booking-buttons{
+.booking-buttons {
   text-align: end;
   margin-bottom: 30px;
 }
 
-.booking-form-row{
+.booking-form-row {
   display: flex;
   gap: 20px;
 }
 
-.special-assistance{
+.special-assistance {
   background: no-repeat 0 url("~src/assets/special-assist_icon.svg");
   height: 20px;
   width: 20px;
   display: inline-block;
   margin-right: 7px;
 }
-
-.checked-icon{
-  position: absolute;
-  width: 12px;
-  height: 9px;
-}
-.mat-button-toggle-checked .checked-icon{
-  margin-top: 19px;
-  background: no-repeat  url("~src/assets/checked_icon.svg");
-}
-
-.passenger-title{
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 28px;
-  color: #10264C;
-}
-
-
-
-

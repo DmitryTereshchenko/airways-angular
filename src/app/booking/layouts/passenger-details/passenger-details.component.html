@@ -1,3 +1,6 @@
+<app-edit
+  [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
+></app-edit>
 <div class="container">
   <div class="booking-container header-helper">
     <form [formGroup]="bookingForm" (submit)="onSubmit()">
@@ -205,6 +208,7 @@
                   placeholder="e.g. 11111111111"
                   formControlName="phoneNumber"
                   required
+                  type="number"
                 />
                 <mat-error
                   *ngIf="
@@ -256,7 +260,9 @@
         <button (click)="locationBack()" mat-button color="primary">
           Back
         </button>
-        <button mat-raised-button color="primary">Continue</button>
+        <button mat-raised-button color="primary" type="submit">
+          Continue
+        </button>
       </div>
     </form>
   </div>

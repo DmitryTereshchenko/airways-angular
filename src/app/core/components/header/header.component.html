@@ -16,7 +16,6 @@
     <mat-horizontal-stepper
       #stepper
       [selectedIndex]="selectedStepIndex"
-      (selectionChange)="click($event)"
       *ngIf="isVisionStepper"
     >
       <mat-step>

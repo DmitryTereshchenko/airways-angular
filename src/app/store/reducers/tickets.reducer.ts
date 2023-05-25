@@ -421,8 +421,8 @@ export const initialState: TicketState = {
       way: '',
       from: '',
       to: '',
-      dateTo: new Date(),
-      dateFrom: new Date(),
+      dateStart: new Date(),
+      dateEnd: new Date(),
       passengers: {
         adult: 0,
         child: 0,
@@ -481,7 +481,7 @@ export const reducer = createReducer(
         ...state.basket,
         search: {
           ...state.basket.search,
-          dateTo: action.dateTo,
+          dateStart: action.dateTo,
         },
       },
     })
@@ -494,7 +494,7 @@ export const reducer = createReducer(
         ...state.basket,
         search: {
           ...state.basket.search,
-          dateFrom: action.dateFrom,
+          dateEnd: action.dateFrom,
         },
       },
     })

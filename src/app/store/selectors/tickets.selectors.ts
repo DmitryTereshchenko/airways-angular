@@ -26,14 +26,14 @@ export const selectChangeCurrency = createSelector(
   (ticketState) => ticketState.currency
 );
 
-export const selectGetSearchDateTo = createSelector(
+export const selectGetSearchDateStart = createSelector(
   selectTicketFeature,
-  (ticketState) => ticketState.basket.search.dateTo
+  (ticketState) => ticketState.basket.search.dateStart
 );
 
-export const selectGetSearchDateFrom = createSelector(
+export const selectGetSearchDateEnd = createSelector(
   selectTicketFeature,
-  (ticketState) => ticketState.basket.search.dateFrom
+  (ticketState) => ticketState.basket.search.dateEnd
 );
 
 export const selectGetSearchTo = createSelector(
@@ -44,4 +44,23 @@ export const selectGetSearchTo = createSelector(
 export const selectGetSearchFrom = createSelector(
   selectTicketFeature,
   (ticketState) => ticketState.basket.search.from
+);
+
+export const selectGetSearch = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search
+);
+
+export const selectGetWay = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search.way
+);
+
+export const selectFlights = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.flights
+);
+export const selectGetPassengers = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search.passengers
 );

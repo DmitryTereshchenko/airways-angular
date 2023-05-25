@@ -1,7 +1,14 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+} from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { TicketData } from '../../constants/ticket-data';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
+import { Search } from '../../../shared/models/ticket-state';
 
 @Component({
   selector: 'app-ticket',
@@ -13,6 +20,13 @@ export class TicketComponent implements OnChanges {
   @Input() public image!: string;
   @Input() public imageTimeTravel!: string;
   @Input() public currency!: 'EUR' | 'USA' | 'PLN' | 'RUB';
+  @Input() public searchData!: Search;
+  @Input() public dateFrom!: Date;
+  @Input() public searchTo!: string;
+  @Input() public searchFrom!: string;
+  @Output() public isEditClick = new EventEmitter<boolean>();
+  private numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
   public data: TicketData = {
     date: new Date(),
     arrivalTime: '',
@@ -29,14 +43,21 @@ export class TicketComponent implements OnChanges {
   };
 
   public isSliderVisible = true;
-
   public isFlightVisible = false;
 
-  constructor(private ticketsFacade: TicketsFacade) {}
+  public tickets: TicketData[] = [];
+  public dates: Date[] = [];
+
+  constructor(public ticketsFacade: TicketsFacade) {}
 
   public ngOnChanges(): void {
-    const [first] = this.ticketsData;
-    this.data = first;
+    this.dates = this.ticketsData.map((item, i) => {
+      return new Date(
+        (item.date.setFullYear(this.dateFrom.getFullYear()),
+        item.date.setMonth(this.dateFrom.getMonth()),
+        item.date.setDate(this.dateFrom.getDate() + this.numbers[i]))
+      );
+    });
   }
 
   public onTabChange(event: MatTabChangeEvent): void {
@@ -44,8 +65,11 @@ export class TicketComponent implements OnChanges {
   }
 
   public dispatchTicketsAndChangeVisible(): void {
-    this.ticketsFacade.addTicketFlights([this.data]);
+    if (this.isSliderVisible) {
+      this.ticketsFacade.addTicketFlights([this.data]);
+    }
     this.isSliderVisible = !this.isSliderVisible;
+    this.isEditClick.emit(this.isSliderVisible);
   }
 
   public changeFlightsVisibility(): void {

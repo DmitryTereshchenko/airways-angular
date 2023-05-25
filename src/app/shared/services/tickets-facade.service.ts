@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest, map } from 'rxjs';
 import { Passengers } from '../models/ticket-state';
 import {
   loadAddDateFrom,
@@ -13,10 +12,14 @@ import {
 import { loadChangeCurrencys } from '../../store/actions/change-currency.actions';
 import {
   selectChangeCurrency,
-  selectGetDateFrom,
-  selectGetDateTo,
-  selectGetSearchDateFrom,
-  selectGetSearchDateTo,
+  selectFlights,
+  selectGetPassengers,
+  selectGetSearch,
+  selectGetSearchDateEnd,
+  selectGetSearchDateStart,
+  selectGetSearchFrom,
+  selectGetSearchTo,
+  selectGetWay,
   selectTicketsFrom,
   selectTicketsTo,
 } from '../../store/selectors/tickets.selectors';
@@ -28,46 +31,18 @@ import { TicketData } from '../../booking/constants/ticket-data';
 })
 export class TicketsFacade {
   public currency$ = this.store.select(selectChangeCurrency);
-
-  public dateStart$ = this.store.select(selectGetSearchDateTo);
-
-  public dateEnd$ = this.store.select(selectGetSearchDateFrom);
-
-  public from$ = combineLatest([
-    this.store.select(selectGetDateFrom),
-    this.store.select(selectTicketsFrom),
-  ]).pipe(
-    map(([date, tickets]) => {
-      tickets.map((item, i) => {
-        return (
-          item.date.setFullYear(date.getFullYear()),
-          item.date.setMonth(date.getMonth()),
-          item.date.setDate(date.getDate() + this.numbersFrom[i])
-        );
-      });
-      return tickets;
-    })
+  public selectGetSearch$ = this.store.select(selectGetSearch);
+  public selectGetSearchDateStart$ = this.store.select(
+    selectGetSearchDateStart
   );
-
-  public to$ = combineLatest([
-    this.store.select(selectGetDateTo),
-    this.store.select(selectTicketsTo),
-  ]).pipe(
-    map(([date, tickets]) => {
-      tickets.map((item, i) => {
-        return (
-          item.date.setFullYear(date.getFullYear()),
-          item.date.setMonth(date.getMonth()),
-          item.date.setDate(date.getDate() + this.numbers[i])
-        );
-      });
-      return tickets;
-    })
-  );
-
-  private numbers = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7];
-
-  private numbersFrom = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  public selectGetSearchDateEnd$ = this.store.select(selectGetSearchDateEnd);
+  public from$ = this.store.select(selectTicketsFrom);
+  public to$ = this.store.select(selectTicketsTo);
+  public way$ = this.store.select(selectGetWay);
+  public flights = this.store.select(selectFlights);
+  public searchFrom$ = this.store.select(selectGetSearchFrom);
+  public searchTo$ = this.store.select(selectGetSearchTo);
+  public passengers$ = this.store.select(selectGetPassengers);
 
   constructor(private store: Store) {}
 
