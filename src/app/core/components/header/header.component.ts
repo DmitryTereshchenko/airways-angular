@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 
 @Component({
@@ -52,18 +51,5 @@ export class HeaderComponent {
   public onOptionSelection(selectedValue: 'EUR' | 'USA' | 'PLN' | 'RUB'): void {
     this.selectedOption = selectedValue;
     this.ticketsFacade.changeCurrency(selectedValue ?? 'EUR');
-  }
-
-  public click(event: StepperSelectionEvent): void {
-    this.selectedStepIndex = event.selectedIndex;
-    if (event.selectedIndex === 0) {
-      this.router.navigate(['/booking/flights']);
-    }
-    if (event.selectedIndex === 1) {
-      this.router.navigate(['/booking/details']);
-    }
-    if (event.selectedIndex === 2) {
-      this.router.navigate(['/booking/summary']);
-    }
   }
 }

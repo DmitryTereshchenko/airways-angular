@@ -1,17 +1,32 @@
-<app-edit></app-edit>
+<app-edit
+  [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
+></app-edit>
 <app-ticket
   [ticketsData]="(ticketsFacade.from$ | async) ?? []"
   [currency]="(ticketsFacade.currency$ | async) ?? 'EUR'"
   [image]="svgFrom"
   [imageTimeTravel]="svgTimeFrom"
   [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
+  [dateFrom]="
+    (ticketsFacade.selectGetSearchDateStart$ | async) ?? searchData.dateStart
+  "
+  (isEditClick)="onEdit($event)"
+  [searchFrom]="from"
+  [searchTo]="to"
 ></app-ticket>
 <app-ticket
+  *ngIf="way === '2'"
   [ticketsData]="(ticketsFacade.to$ | async) ?? []"
   [currency]="(ticketsFacade.currency$ | async) ?? 'EUR'"
   [image]="svgTo"
   [imageTimeTravel]="svgTimeTo"
   [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
+  [dateFrom]="
+    (ticketsFacade.selectGetSearchDateEnd$ | async) ?? searchData.dateStart
+  "
+  (isEditClick)="onEdit($event)"
+  [searchFrom]="to"
+  [searchTo]="from"
 ></app-ticket>
 <div class="buttons">
   <button
@@ -23,6 +38,7 @@
     Back
   </button>
   <button
+    [disabled]="isEditTo"
     routerLink="/booking/details"
     mat-raised-button
     color="primary"

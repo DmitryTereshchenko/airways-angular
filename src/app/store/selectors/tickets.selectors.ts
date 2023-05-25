@@ -50,3 +50,17 @@ export const selectGetSearch = createSelector(
   selectTicketFeature,
   (ticketState) => ticketState.basket.search
 );
+
+export const selectGetWay = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search.way
+);
+
+export const selectFlights = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.flights
+);
+export const selectGetPassengers = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket.search.passengers
+);

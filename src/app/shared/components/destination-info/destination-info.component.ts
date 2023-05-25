@@ -16,8 +16,7 @@ export class DestinationInfoComponent implements OnInit, OnDestroy {
   @Input() public formControlEndDate!: FormControl;
   @Input() public formControlPassengers!: FormControl;
 
-  public startDateSubscription!: Subscription;
-  public endDateSubscription!: Subscription;
+  public subscription = new Subscription();
 
   constructor(private ticketsFacade: TicketsFacade) {}
 
@@ -27,24 +26,27 @@ export class DestinationInfoComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.startDateSubscription = this.formControlStartDate.valueChanges
-      .pipe(
-        tap((startDate) => {
-          this.ticketsFacade.addDateToOnSearch(startDate);
-        })
-      )
-      .subscribe();
-    this.endDateSubscription = this.formControlEndDate.valueChanges
-      .pipe(
-        tap((endDate) => {
-          this.ticketsFacade.addDateFromOnSearch(endDate);
-        })
-      )
-      .subscribe();
+    this.subscription.add(
+      this.formControlStartDate.valueChanges
+        .pipe(
+          tap((startDate) => {
+            this.ticketsFacade.addDateToOnSearch(startDate);
+          })
+        )
+        .subscribe()
+    );
+    this.subscription.add(
+      this.formControlEndDate.valueChanges
+        .pipe(
+          tap((endDate) => {
+            this.ticketsFacade.addDateFromOnSearch(endDate);
+          })
+        )
+        .subscribe()
+    );
   }
 
   public ngOnDestroy(): void {
-    this.startDateSubscription.unsubscribe();
-    this.endDateSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
