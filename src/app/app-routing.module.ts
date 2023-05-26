@@ -17,6 +17,10 @@ const routes: Routes = [
       import('./booking/booking.module').then((m) => m.BookingModule),
   },
   {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
+  },
+  {
     path: '404',
     loadChildren: () =>
       import('./core/not-found/not-found.module').then((m) => m.NotFoundModule),
