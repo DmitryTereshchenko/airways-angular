@@ -15,4 +15,21 @@ export interface TicketState {
 interface Basket {
   flights: TicketData[];
   search: SearchForm;
+  passengers: PassengersPage;
+}
+
+export interface PassengersPage {
+  email: string;
+  phoneNumber: number;
+  countryCode: string;
+  passengers: PassengersInfo[];
+}
+
+export interface PassengersInfo {
+  dateOfBirth: Date;
+  lastName: string;
+  name: string;
+  passenger: string;
+  sex: string;
+  specialAssist: string;
 }

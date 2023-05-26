@@ -7,6 +7,7 @@ import {
 } from '../actions/get-tickets.actions';
 import { loadChangeCurrencys } from '../actions/change-currency.actions';
 import { addSearchInfo } from '../actions/add-search.actions';
+import { loadAddPassengers } from '../actions/add-passengers.actions';
 
 export const initialState: TicketState = {
   dateFrom: new Date('2023-03-12'),
@@ -422,6 +423,12 @@ export const initialState: TicketState = {
         infant: 0,
       },
     },
+    passengers: {
+      email: '',
+      phoneNumber: 0,
+      countryCode: '',
+      passengers: [],
+    },
   },
   error: null,
   isLoading: false,
@@ -473,6 +480,19 @@ export const reducer = createReducer(
       basket: {
         ...state.basket,
         search: form,
+      },
+    })
+  ),
+  on(
+    loadAddPassengers,
+    (state, action): TicketState => ({
+      ...state,
+      basket: {
+        ...state.basket,
+        passengers: {
+          ...state.basket.passengers,
+          ...action.passengers,
+        },
       },
     })
   )

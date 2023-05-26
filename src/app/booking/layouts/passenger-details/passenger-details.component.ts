@@ -12,7 +12,14 @@ import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 })
 export class PassengerDetailsComponent implements OnInit {
   public bookingForm!: FormGroup;
-  public passengerList = ['adult'];
+  public passengerList = [
+    'adult',
+    'adult',
+    'child',
+    'child',
+    'infant',
+    'infant',
+  ];
 
   public searchData = {
     way: '',
@@ -77,6 +84,7 @@ export class PassengerDetailsComponent implements OnInit {
       );
     }
     if (this.bookingForm.valid) {
+      this.ticketsFacade.addPassengersPage(this.bookingForm.value);
       this.router.navigate(['/booking/summary']);
     }
   }

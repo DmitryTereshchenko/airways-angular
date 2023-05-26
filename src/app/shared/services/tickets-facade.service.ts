@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addSearchInfo } from '../../store/actions/add-search.actions';
+import { PassengersPage } from '../models/ticket-state';
 import { loadChangeCurrencys } from '../../store/actions/change-currency.actions';
 import {
   selectChangeCurrency,
@@ -18,6 +19,7 @@ import {
 import { loadAddTicketFlights } from '../../store/actions/add-ticket-flight.actions';
 import { TicketData } from '../../booking/constants/ticket-data';
 import { SearchForm } from '../models/search-form.model';
+import { loadAddPassengers } from '../../store/actions/add-passengers.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -49,5 +51,9 @@ export class TicketsFacade {
 
   public addSearchData(data: SearchForm): void {
     this.store.dispatch(addSearchInfo({ form: data }));
+  }
+
+  public addPassengersPage(passengers: PassengersPage): void {
+    this.store.dispatch(loadAddPassengers({ passengers }));
   }
 }
