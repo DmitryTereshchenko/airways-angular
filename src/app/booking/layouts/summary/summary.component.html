@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="ticketsFacade.selectGetBasket$ | async as basket">
   <div class="booking-container header-helper">
     <h2 class="booking-title"><span class="summary-icon"></span>Summary</h2>
     <div class="ticket-wrap">
@@ -6,31 +6,42 @@
         <div class="summary__ticket block-wrap">
           <div class="flight-info__summary">
             <div class="flight-info">
-              <h3 class="flight-number">FR 1925</h3>
-              <p class="flight-direction">Dublin — Warsaw Modlin</p>
+              <h3 class="flight-number">
+                {{ basket.flights[0].flightCode }}
+              </h3>
+
+              <p class="flight-direction">
+                {{ basket.search.from }} —
+                {{ basket.search.to }}
+              </p>
             </div>
             <div class="flight-date__summary">
-              <p class="flight-date">Wednesday, 1 March, 2023</p>
-              <p class="flight-time">8:40 — 12:00</p>
+              <p class="flight-date">
+                {{ basket.flights[0].date | date : "EEEE, d MMMM, y," }}
+              </p>
+              <p class="flight-time">
+                {{ basket.flights[0].departureTimeFrom }} —
+                {{ basket.flights[0].departureTimeTo }}
+              </p>
             </div>
           </div>
-          <div class="passenger-info__summary">
-            <h4 class="passenger-name">Harry Potter</h4>
-            <div class="passenger-info">
-              <p>1 checked bag (total 23 kg) included</p>
-              <p>1 cabin bag + 1 personal item (max. 8 kg) included</p>
-              <p>Seat 19E</p>
+          <ng-container
+            *ngFor="
+              let passenger of basket.passengers.passengers;
+              let i = index
+            "
+          >
+            <div class="passenger-info__summary">
+              <h4 class="passenger-name">
+                {{ passenger.name + " " + passenger.lastName }}
+              </h4>
+              <div class="passenger-info">
+                <p>1 checked bag (total 23 kg) included</p>
+                <p>1 cabin bag + 1 personal item (max. 8 kg) included</p>
+                <p>Seat {{ i + 10 }}E</p>
+              </div>
             </div>
-          </div>
-
-          <div class="passenger-info__summary">
-            <h4 class="passenger-name">Lilly Potter</h4>
-            <div class="passenger-info">
-              <p>1 checked bag (total 23 kg) included</p>
-              <p>1 cabin bag + 1 personal item (max. 8 kg) included</p>
-              <p>Seat 19E</p>
-            </div>
-          </div>
+          </ng-container>
         </div>
         <div class="summary__ticket block-wrap"></div>
       </div>

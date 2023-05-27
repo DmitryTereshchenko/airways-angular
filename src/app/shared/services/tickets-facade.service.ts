@@ -6,6 +6,7 @@ import { loadChangeCurrencys } from '../../store/actions/change-currency.actions
 import {
   selectChangeCurrency,
   selectFlights,
+  selectGetBasket,
   selectGetPassengers,
   selectGetSearch,
   selectGetSearchDateEnd,
@@ -38,6 +39,7 @@ export class TicketsFacade {
   public searchFrom$ = this.store.select(selectGetSearchFrom);
   public searchTo$ = this.store.select(selectGetSearchTo);
   public passengers$ = this.store.select(selectGetPassengers);
+  public selectGetBasket$ = this.store.select(selectGetBasket);
 
   constructor(private store: Store) {}
 

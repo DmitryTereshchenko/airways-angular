@@ -64,3 +64,8 @@ export const selectGetPassengers = createSelector(
   selectTicketFeature,
   (ticketState) => ticketState.basket.search.passengers
 );
+
+export const selectGetBasket = createSelector(
+  selectTicketFeature,
+  (ticketState) => ticketState.basket
+);

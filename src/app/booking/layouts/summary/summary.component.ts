@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 
 @Component({
   selector: 'app-summary',
@@ -7,7 +8,11 @@ import { Location } from '@angular/common';
   styleUrls: ['./summary.component.scss'],
 })
 export class SummaryComponent {
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    public ticketsFacade: TicketsFacade
+  ) {}
+
   public locationBack(): void {
     this.location.back();
   }

@@ -12,14 +12,7 @@ import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 })
 export class PassengerDetailsComponent implements OnInit {
   public bookingForm!: FormGroup;
-  public passengerList = [
-    'adult',
-    'adult',
-    'child',
-    'child',
-    'infant',
-    'infant',
-  ];
+  public passengerList: string[] = [];
 
   public searchData = {
     way: '',
