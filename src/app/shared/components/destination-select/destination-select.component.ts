@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { TicketsFacade } from '../../services/tickets-facade.service';
+import { FormControl } from '@angular/forms';
 import { City } from '../../models/city.model';
+import { FormGroupTyped } from '../../../utils/form.util';
+import { SearchForm } from '../../models/search-form.model';
 
 @Component({
   selector: 'app-destination-select',
@@ -9,16 +10,18 @@ import { City } from '../../models/city.model';
   styleUrls: ['./destination-select.component.scss'],
 })
 export class DestinationSelectComponent implements OnInit {
-  @Input() public form!: FormGroup;
+  @Input() public form!: FormGroupTyped<SearchForm>;
   @Input() public isReverseButton!: boolean;
-  @Input() public formControlFrom!: FormControl;
-  @Input() public formControlTo!: FormControl;
   public citiesList: City[] = [];
 
-  constructor(private ticketsFacade: TicketsFacade) {}
-
+  public get formControlFrom(): FormControl {
+    return this.form.controls.from;
+  }
+  public get formControlTo(): FormControl {
+    return this.form.controls.to;
+  }
   public get isReverseButtonDisabled(): boolean {
-    return !this.formControlFrom.value || !this.formControlTo.value;
+    return !this.formControlTo.value || !this.formControlFrom.value;
   }
 
   public ngOnInit(): void {
@@ -29,9 +32,6 @@ export class DestinationSelectComponent implements OnInit {
     const tmp = this.formControlTo.value;
     this.formControlTo.setValue(this.formControlFrom.value);
     this.formControlFrom.setValue(tmp);
-
-    this.ticketsFacade.addFromOnSearch(this.formControlFrom.value);
-    this.ticketsFacade.addToOnSearch(this.formControlTo.value);
   }
 
   private generateCitiesList(): City[] {
@@ -47,13 +47,5 @@ export class DestinationSelectComponent implements OnInit {
       { name: 'Catania', shortCode: 'CTA', location: 'Fontanarossa, Italy' },
       { name: 'Dublin', shortCode: 'DUB', location: 'Ireland' },
     ];
-  }
-
-  public onSelectionChangeFrom(city: string): void {
-    this.ticketsFacade.addFromOnSearch(city);
-  }
-
-  public onSelectionChangeTo(city: string): void {
-    this.ticketsFacade.addToOnSearch(city);
   }
 }

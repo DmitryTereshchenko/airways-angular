@@ -1,4 +1,5 @@
 import { TicketData } from '../../booking/constants/ticket-data';
+import { SearchForm } from './search-form.model';
 
 export interface TicketState {
   dateTo: Date;
@@ -13,20 +14,5 @@ export interface TicketState {
 
 interface Basket {
   flights: TicketData[];
-  search: Search;
-}
-
-export interface Search {
-  way: string;
-  from: string;
-  to: string;
-  dateStart: Date;
-  dateEnd: Date;
-  passengers: Passengers;
-}
-
-export interface Passengers {
-  adult: number;
-  child: number;
-  infant: number;
+  search: SearchForm;
 }

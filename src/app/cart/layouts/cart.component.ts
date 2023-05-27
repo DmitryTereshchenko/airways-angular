@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { Location } from '@angular/common';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface Ticket {
   number: number;

@@ -21,7 +21,6 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { Passengers } from '../../models/ticket-state';
 import { Passenger } from '../../models/passenger.model';
 
 @Component({
@@ -47,7 +46,7 @@ export class PassengersPickerComponent
   public overlayWidth = 0;
   public isListVisible = false;
 
-  public passengers: Passengers = {
+  public passengers: Passenger = {
     adult: 0,
     child: 0,
     infant: 0,
@@ -78,7 +77,7 @@ export class PassengersPickerComponent
     }
 
     this.form = fb.group({
-      passengers: ['', Validators.required],
+      passengers: [this.passengersString, Validators.required],
     });
   }
 
@@ -172,7 +171,7 @@ export class PassengersPickerComponent
   }
 
   public get shouldLabelFloat(): boolean {
-    return this.focused || this.isListVisible;
+    return !this.empty;
   }
 
   public get errorState(): boolean {

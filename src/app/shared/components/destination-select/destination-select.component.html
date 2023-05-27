@@ -1,10 +1,7 @@
 <div class="destination-select" [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>From</mat-label>
-    <mat-select
-      (selectionChange)="onSelectionChangeFrom($event.value)"
-      [formControl]="formControlFrom"
-    >
+    <mat-select [formControl]="formControlFrom">
       <mat-select-trigger>{{ formControlFrom.value }}</mat-select-trigger>
       <mat-option
         *ngFor="let city of citiesList"
@@ -17,10 +14,7 @@
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>To</mat-label>
-    <mat-select
-      (selectionChange)="onSelectionChangeTo($event.value)"
-      [formControl]="formControlTo"
-    >
+    <mat-select [formControl]="formControlTo">
       <mat-select-trigger>{{ formControlTo.value }}</mat-select-trigger>
       <mat-option
         *ngFor="let city of citiesList"

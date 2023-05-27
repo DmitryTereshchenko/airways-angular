@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
+import { DateService } from '../../services/date.service';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +10,7 @@ import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  public readonly dateFormats = [
-    'MM/DD/YYYY',
-    'DD/MM/YYYY',
-    'YYYY/DD/MM',
-    'YYY/MM/DD',
-  ];
-
+  public selectedDateFormat!: string;
   public readonly currencies = ['EUR', 'USA', 'RUB', 'PLN'];
 
   public isVisionStepper = false;
@@ -27,8 +22,10 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private location: Location,
-    private ticketsFacade: TicketsFacade
+    private ticketsFacade: TicketsFacade,
+    private dateService: DateService
   ) {
+    this.selectedDateFormat = this.dateService.format;
     this.location.onUrlChange((url) => {
       if (url === '/') {
         this.isVisionStepper = false;
@@ -48,8 +45,16 @@ export class HeaderComponent {
     });
   }
 
+  public get dateFormats(): string[] {
+    return this.dateService.dateFormats;
+  }
+
   public onOptionSelection(selectedValue: 'EUR' | 'USA' | 'PLN' | 'RUB'): void {
     this.selectedOption = selectedValue;
     this.ticketsFacade.changeCurrency(selectedValue ?? 'EUR');
+  }
+
+  public onDateFormatChanged(): void {
+    this.dateService.format = this.selectedDateFormat;
   }
 }

@@ -31,7 +31,10 @@
     <div class="nav-links">
       <div class="actions">
         <mat-form-field appearance="outline">
-          <mat-select [value]="dateFormats[0]">
+          <mat-select
+            [(ngModel)]="selectedDateFormat"
+            (ngModelChange)="onDateFormatChanged()"
+          >
             <mat-option
               *ngFor="let dateFormat of dateFormats"
               [value]="dateFormat"

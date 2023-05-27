@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SearchForm } from '../../../shared/models/search-form.model';
 import { ControlsOf, FormGroupTyped } from '../../../utils/form.util';
-import { Search } from '../../../shared/models/ticket-state';
 
 type EditFlightForm = SearchForm;
 
@@ -12,7 +11,7 @@ type EditFlightForm = SearchForm;
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-  @Input() public searchData!: Search;
+  @Input() public searchData!: SearchForm;
   public isEditFormVisible = false;
   public editFlightForm!: FormGroupTyped<EditFlightForm>;
 
