@@ -1,14 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Passengers } from '../models/ticket-state';
-import {
-  loadAddDateFrom,
-  loadAddDateTo,
-  loadAddFrom,
-  loadAddTo,
-  loadPassengers,
-  loadWay,
-} from '../../store/actions/add-search.actions';
+import { addSearchInfo } from '../../store/actions/add-search.actions';
 import { loadChangeCurrencys } from '../../store/actions/change-currency.actions';
 import {
   selectChangeCurrency,
@@ -25,6 +17,7 @@ import {
 } from '../../store/selectors/tickets.selectors';
 import { loadAddTicketFlights } from '../../store/actions/add-ticket-flight.actions';
 import { TicketData } from '../../booking/constants/ticket-data';
+import { SearchForm } from '../models/search-form.model';
 
 @Injectable({
   providedIn: 'root',
@@ -54,27 +47,7 @@ export class TicketsFacade {
     this.store.dispatch(loadChangeCurrencys({ currency }));
   }
 
-  public addDateToOnSearch(dateTo: Date): void {
-    this.store.dispatch(loadAddDateTo({ dateTo }));
-  }
-
-  public addDateFromOnSearch(dateFrom: Date): void {
-    this.store.dispatch(loadAddDateFrom({ dateFrom }));
-  }
-
-  public addFromOnSearch(from: string): void {
-    this.store.dispatch(loadAddFrom({ from }));
-  }
-
-  public addToOnSearch(to: string): void {
-    this.store.dispatch(loadAddTo({ to }));
-  }
-
-  public addPassengers(passengers: Passengers): void {
-    this.store.dispatch(loadPassengers({ passengers }));
-  }
-
-  public addWay(way: string): void {
-    this.store.dispatch(loadWay({ way }));
+  public addSearchData(data: SearchForm): void {
+    this.store.dispatch(addSearchInfo({ form: data }));
   }
 }

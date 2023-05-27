@@ -1,52 +1,66 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Subscription, tap } from 'rxjs';
-import { TicketsFacade } from '../../services/tickets-facade.service';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import * as moment from 'moment';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { FormControl } from '@angular/forms';
 import { Passenger } from '../../models/passenger.model';
+import { FormGroupTyped } from '../../../utils/form.util';
+import { SearchForm } from '../../models/search-form.model';
+import { DateService } from '../../../core/services/date.service';
 
 @Component({
   selector: 'app-destination-info',
   templateUrl: './destination-info.component.html',
   styleUrls: ['./destination-info.component.scss'],
 })
-export class DestinationInfoComponent implements OnInit, OnDestroy {
+export class DestinationInfoComponent implements OnInit, OnChanges {
   @Input() public isMultipleWay!: boolean;
-  @Input() public form!: FormGroup;
-  @Input() public formControlStartDate!: FormControl;
-  @Input() public formControlEndDate!: FormControl;
-  @Input() public formControlPassengers!: FormControl;
+  @Input() public form!: FormGroupTyped<SearchForm>;
 
-  public subscription = new Subscription();
+  public startDate!: moment.Moment;
+  public endDate!: moment.Moment;
 
-  constructor(private ticketsFacade: TicketsFacade) {}
+  constructor(private dateService: DateService) {}
 
-  public writePassengers(passengers: Passenger): void {
-    this.formControlPassengers.setValue(passengers);
-    this.ticketsFacade.addPassengers(passengers);
+  public get passengersControl(): FormControl {
+    return this.form.controls.passengers;
+  }
+
+  public get startDateControl(): FormControl {
+    return this.form.controls.dateStart;
+  }
+  public get endDateControl(): FormControl {
+    return this.form.controls.dateEnd;
+  }
+
+  public ngOnChanges(): void {
+    this.startDate = this.startDateControl.value;
+    this.endDate = this.endDateControl.value;
   }
 
   public ngOnInit(): void {
-    this.subscription.add(
-      this.formControlStartDate.valueChanges
-        .pipe(
-          tap((startDate) => {
-            this.ticketsFacade.addDateToOnSearch(startDate);
-          })
-        )
-        .subscribe()
-    );
-    this.subscription.add(
-      this.formControlEndDate.valueChanges
-        .pipe(
-          tap((endDate) => {
-            this.ticketsFacade.addDateFromOnSearch(endDate);
-          })
-        )
-        .subscribe()
+    this.dateService.format$.subscribe((format) =>
+      this.onDateFormatChanged(format)
     );
   }
 
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  public writePassengers(passengers: Passenger): void {
+    this.passengersControl.setValue(passengers);
+  }
+
+  public onDateChange(
+    event: MatDatepickerInputEvent<moment.Moment>,
+    control?: 'startDate' | 'endDate'
+  ): void {
+    if (control === 'startDate') {
+      this.startDateControl.setValue(event.value?.toDate());
+      return;
+    }
+
+    this.endDateControl.setValue(event.value?.toDate());
+  }
+
+  private onDateFormatChanged(format: string): void {
+    this.startDate = moment(this.startDate, format);
+    this.endDate = moment(this.endDate, format);
   }
 }

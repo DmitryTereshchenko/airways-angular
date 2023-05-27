@@ -8,7 +8,7 @@ import {
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { TicketData } from '../../constants/ticket-data';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
-import { Search } from '../../../shared/models/ticket-state';
+import { SearchForm } from '../../../shared/models/search-form.model';
 
 @Component({
   selector: 'app-ticket',
@@ -20,7 +20,7 @@ export class TicketComponent implements OnChanges {
   @Input() public image!: string;
   @Input() public imageTimeTravel!: string;
   @Input() public currency!: 'EUR' | 'USA' | 'PLN' | 'RUB';
-  @Input() public searchData!: Search;
+  @Input() public searchData!: SearchForm;
   @Input() public dateFrom!: Date;
   @Input() public searchTo!: string;
   @Input() public searchFrom!: string;

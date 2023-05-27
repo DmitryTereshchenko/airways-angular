@@ -6,14 +6,7 @@ import {
   changeDateOnTicketsTo,
 } from '../actions/get-tickets.actions';
 import { loadChangeCurrencys } from '../actions/change-currency.actions';
-import {
-  loadAddDateFrom,
-  loadAddDateTo,
-  loadAddFrom,
-  loadAddTo,
-  loadPassengers,
-  loadWay,
-} from '../actions/add-search.actions';
+import { addSearchInfo } from '../actions/add-search.actions';
 
 export const initialState: TicketState = {
   dateFrom: new Date('2023-03-12'),
@@ -474,83 +467,12 @@ export const reducer = createReducer(
     })
   ),
   on(
-    loadAddDateTo,
-    (state, action): TicketState => ({
+    addSearchInfo,
+    (state, { form }): TicketState => ({
       ...state,
       basket: {
         ...state.basket,
-        search: {
-          ...state.basket.search,
-          dateStart: action.dateTo,
-        },
-      },
-    })
-  ),
-  on(
-    loadAddDateFrom,
-    (state, action): TicketState => ({
-      ...state,
-      basket: {
-        ...state.basket,
-        search: {
-          ...state.basket.search,
-          dateEnd: action.dateFrom,
-        },
-      },
-    })
-  ),
-  on(
-    loadAddFrom,
-    (state, action): TicketState => ({
-      ...state,
-      basket: {
-        ...state.basket,
-        search: {
-          ...state.basket.search,
-          from: action.from,
-        },
-      },
-    })
-  ),
-  on(
-    loadAddTo,
-    (state, action): TicketState => ({
-      ...state,
-      basket: {
-        ...state.basket,
-        search: {
-          ...state.basket.search,
-          to: action.to,
-        },
-      },
-    })
-  ),
-  on(
-    loadPassengers,
-    (state, action): TicketState => ({
-      ...state,
-      basket: {
-        ...state.basket,
-        search: {
-          ...state.basket.search,
-          passengers: {
-            ...state.basket.search.passengers,
-            ...action.passengers,
-          },
-        },
-      },
-    })
-  ),
-  on(
-    loadWay,
-    (state, action): TicketState => ({
-      ...state,
-      basket: {
-        ...state.basket,
-        search: {
-          ...state.basket.search,
-          way: action.way,
-        },
+        search: form,
       },
     })
   )

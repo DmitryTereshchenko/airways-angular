@@ -40,16 +40,10 @@
 </div>
 
 <ng-template #editForm>
-  <app-destination-select
-    [form]="editFlightForm"
-    [formControlTo]="editFlightForm.controls.to"
-    [formControlFrom]="editFlightForm.controls.from"
-  ></app-destination-select>
+  <app-destination-select [form]="editFlightForm"></app-destination-select>
+
   <app-destination-info
     [form]="editFlightForm"
-    [formControlPassengers]="editFlightForm.controls.passengers"
-    [formControlStartDate]="editFlightForm.controls.dateStart"
-    [formControlEndDate]="editFlightForm.controls.dateEnd"
     [isMultipleWay]="isMultipleWay()"
   ></app-destination-info>
 </ng-template>

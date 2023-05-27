@@ -10,7 +10,7 @@
     <mat-label>Passengers</mat-label>
     <app-passengers-picker
       [targetElement]="target"
-      [passengersControl]="formControlPassengers"
+      [passengersControl]="passengersControl"
       (controlClosed)="writePassengers($event)"
     ></app-passengers-picker>
   </mat-form-field>
@@ -23,12 +23,14 @@
       <input
         matStartDate
         placeholder="Start date"
-        [formControl]="formControlStartDate"
+        [value]="startDate"
+        (dateChange)="onDateChange($event, 'startDate')"
       />
       <input
         matEndDate
         placeholder="End date"
-        [formControl]="formControlEndDate"
+        [value]="endDate"
+        (dateChange)="onDateChange($event, 'endDate')"
       />
     </mat-date-range-input>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -42,7 +44,8 @@
     <input
       matInput
       [matDatepicker]="picker"
-      [formControl]="formControlStartDate"
+      [value]="startDate"
+      (dateChange)="onDateChange($event, 'startDate')"
     />
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
