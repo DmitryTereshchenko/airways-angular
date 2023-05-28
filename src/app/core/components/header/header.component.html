@@ -53,13 +53,22 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <button mat-stroked-button>
+        <button
+          mat-stroked-button
+          (click)="signIn()"
+          *ngIf="(userData$ | async) === null"
+        >
           <mat-icon>person</mat-icon>
           Sign in
         </button>
-        <button mat-icon-button routerLink="/cart">
-          <mat-icon>shopping_basket</mat-icon>
-        </button>
+        <div class="auth-actions" *ngIf="userData$ | async">
+          <button mat-icon-button>
+            <mat-icon>person</mat-icon>
+          </button>
+          <button mat-icon-button routerLink="/cart" *ngIf="userData$ | async">
+            <mat-icon>shopping_basket</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>

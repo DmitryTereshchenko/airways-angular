@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { combineLatest, map, Subscription } from 'rxjs';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
+import { DialogService } from '../../../core/services/dialog.service';
+import { ConfirmModalComponent } from '../../components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-summary',
@@ -23,7 +25,8 @@ export class SummaryComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
   constructor(
     private location: Location,
-    public ticketsFacade: TicketsFacade
+    public ticketsFacade: TicketsFacade,
+    private dialogService: DialogService
   ) {}
 
   public ngOnInit(): void {
@@ -64,5 +67,9 @@ export class SummaryComponent implements OnInit, OnDestroy {
   }
   public locationBack(): void {
     this.location.back();
+  }
+
+  public confirmPurchase(): void {
+    this.dialogService.openDialog(ConfirmModalComponent);
   }
 }

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 import { DateService } from '../../services/date.service';
+import { AuthService } from '../../../auth/services/auth.service';
+import { UserData } from '../../../shared/models/user-data.model';
+import { AuthLayoutComponent } from '../../../auth/layouts/auth-layout/auth-layout.component';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +27,8 @@ export class HeaderComponent {
     private router: Router,
     private location: Location,
     private ticketsFacade: TicketsFacade,
-    private dateService: DateService
+    private dateService: DateService,
+    private authService: AuthService
   ) {
     this.selectedDateFormat = this.dateService.format;
     this.location.onUrlChange((url) => {
@@ -49,6 +54,10 @@ export class HeaderComponent {
     return this.dateService.dateFormats;
   }
 
+  public get userData$(): Observable<UserData | null> {
+    return this.authService.userData$;
+  }
+
   public onOptionSelection(selectedValue: 'EUR' | 'USA' | 'PLN' | 'RUB'): void {
     this.selectedOption = selectedValue;
     this.ticketsFacade.changeCurrency(selectedValue ?? 'EUR');
@@ -56,5 +65,9 @@ export class HeaderComponent {
 
   public onDateFormatChanged(): void {
     this.dateService.format = this.selectedDateFormat;
+  }
+
+  public signIn(): void {
+    this.authService.openAuthModal(AuthLayoutComponent);
   }
 }

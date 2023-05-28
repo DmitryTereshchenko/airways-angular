@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookingLayoutComponent } from './layouts/booking-layout/booking-layout.component';
 import { PassengerDetailsComponent } from './layouts/passenger-details/passenger-details.component';
 import { SummaryComponent } from './layouts/summary/summary.component';
+import { AuthGuard } from '../auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,10 +14,12 @@ const routes: Routes = [
   {
     path: 'booking/details',
     component: PassengerDetailsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'booking/summary',
     component: SummaryComponent,
+    canActivate: [AuthGuard],
   },
 ];
 @NgModule({

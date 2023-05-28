@@ -86,6 +86,7 @@ export class PassengersPickerComponent
   public toggleListVisibility(): void {
     if (this.isListVisible && !this.focused) {
       this.isListVisible = false;
+      this.stateChanges.next();
       this.controlClosed.emit(this.passengers);
       this.ticketsFacade.addPassengers(this.passengers);
     }
@@ -178,7 +179,7 @@ export class PassengersPickerComponent
   }
 
   public get errorState(): boolean {
-    return this.form.invalid && this.form.touched;
+    return this.touched && !this.form.valid; // Object.values(this.passengers).every(v => !v);
   }
 
   public onFocusIn(): void {

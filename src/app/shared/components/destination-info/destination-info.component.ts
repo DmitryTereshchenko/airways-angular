@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import * as moment from 'moment';
+import moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { FormControl } from '@angular/forms';
 import { Subscription, tap } from 'rxjs';

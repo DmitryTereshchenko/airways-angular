@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   exports: [
@@ -39,6 +40,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCheckboxModule,
     MatButtonModule,
     MatMenuModule,
+    MatDialogModule,
   ],
   providers: [
     {
