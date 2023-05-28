@@ -12,7 +12,7 @@ export interface TicketState {
   isLoading: boolean;
 }
 
-interface Basket {
+export interface Basket {
   flights: TicketData[];
   search: SearchForm;
   passengers: PassengersPage;

@@ -1,7 +1,12 @@
-<div class="container" *ngIf="ticketsFacade.selectGetBasket$ | async as basket">
+<div class="container">
   <div class="cart">
     <h2 class="title">Cart</h2>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      *ngIf="basket[0].flights.length > 0; else void"
+    >
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
@@ -19,41 +24,67 @@
       <ng-container matColumnDef="flightCode">
         <th mat-header-cell *matHeaderCellDef>No.</th>
         <td mat-cell *matCellDef="let element" class="flight-number">
-          {{ element.flightCode }}
+          {{ element.flights[0].flightCode }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="flight">
         <th mat-header-cell *matHeaderCellDef class="flight">Flight</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.ticketsFrom }} - {{ element.ticketsTo }}
+          {{ element.search.from }} - {{ element.search.to }} <br />
+          <ng-container *ngIf="element.search.way === 2"
+            >{{ element.search.to }} - {{ element.search.from }}</ng-container
+          >
         </td>
       </ng-container>
 
       <ng-container matColumnDef="typeTrip">
         <th mat-header-cell *matHeaderCellDef>Type Trip</th>
-        <td mat-cell *matCellDef="let element">{{ element.typeTrip }}</td>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.search.way === '1'"
+            >One way</ng-container
+          >
+          <ng-container *ngIf="element.search.way === '2'"
+            >Round Trip</ng-container
+          >
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="dataTime">
         <th mat-header-cell *matHeaderCellDef>Data & Time</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.dateFrom }}, {{ element.departureTimeFrom }} -
-          {{ element.departureTimeTo }} <br />
-          {{ element.dateTo }}, {{ element.departureTimeFrom }} -
-          {{ element.departureTimeTo }}
+          <ng-container>
+            {{ element.flights[0].date | date : "d MMMM, y," }}
+            {{ element.flights[0].departureTimeFrom }} —
+            {{ element.flights[0].departureTimeTo }}</ng-container
+          >
+          <ng-container>
+            {{ element.flights[1].date | date : "d MMMM, y," }}
+            {{ element.flights[1].departureTimeFrom }} —
+            {{ element.flights[1].departureTimeTo }}</ng-container
+          >
         </td>
       </ng-container>
 
       <ng-container matColumnDef="passengers">
         <th mat-header-cell *matHeaderCellDef>Passengers</th>
-        <td mat-cell *matCellDef="let element">{{ element.passengers }}</td>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="element.search.passengers.adult !== 0"
+            >{{ element.search.passengers.adult }} x Adult
+          </ng-container>
+          <ng-container *ngIf="element.search.passengers.child !== 0"
+            >{{ element.search.passengers.child }} x Child
+          </ng-container>
+          <ng-container *ngIf="element.search.passengers.infant !== 0"
+            >{{ element.search.passengers.infant }} x Infant
+          </ng-container>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef>Price</th>
         <td mat-cell *matCellDef="let element" class="price">
-          {{ element.price }}
+          {{ currency }}{{ totalSum.toFixed(2) }}
         </td>
       </ng-container>
 
@@ -100,3 +131,5 @@
     </div>
   </div>
 </div>
+
+<ng-template #void>Not Found</ng-template>
