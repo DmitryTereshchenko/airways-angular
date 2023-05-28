@@ -12,7 +12,7 @@ import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 })
 export class PassengerDetailsComponent implements OnInit {
   public bookingForm!: FormGroup;
-  public passengerList = ['adult'];
+  public passengerList: string[] = [];
 
   public searchData = {
     way: '',
@@ -62,7 +62,7 @@ export class PassengerDetailsComponent implements OnInit {
         name: ['', [Validators.required, Validators.pattern(/^\D+$/)]],
         lastName: ['', [Validators.required, Validators.pattern(/^\D+$/)]],
         dateOfBirth: ['', [Validators.required]],
-        sex: ['', [Validators.required]],
+        sex: ['male', [Validators.required]],
         specialAssist: [''],
       });
       (<FormArray>this.bookingForm.controls['passengers']).push(passengerForm);
