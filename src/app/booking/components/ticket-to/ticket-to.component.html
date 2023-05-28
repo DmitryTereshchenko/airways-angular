@@ -23,9 +23,7 @@
           <div class="slider__label">
             <span class="slider__date">{{ date | date : "d MMM" }}</span>
             <span class="slider__week">{{ date | date : "EEEE" }}</span>
-            <ng-container
-              *ngIf="ticketsData[i].price[currency] !== ''; else airSvg"
-            >
+            <ng-container *ngIf="ticketsData[i].price.EUR !== ''; else airSvg">
               <span class="slider__money">{{
                 ticketsData[i].price[currency]
               }}</span>

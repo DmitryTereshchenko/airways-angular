@@ -42,11 +42,11 @@
         <th mat-header-cell *matHeaderCellDef>Type Trip</th>
         <td mat-cell *matCellDef="let element">
           <ng-container *ngIf="element.search.way === '1'"
-            >One way</ng-container
-          >
+            >One way
+          </ng-container>
           <ng-container *ngIf="element.search.way === '2'"
-            >Round Trip</ng-container
-          >
+            >Round Trip
+          </ng-container>
         </td>
       </ng-container>
 
@@ -120,9 +120,13 @@
     </table>
 
     <div class="total">
-      <button class="add-new" mat-button color="primary">+ Add new trip</button>
+      <button class="add-new" mat-button color="primary" routerLink="/">
+        + Add new trip
+      </button>
       <div class="total-info">
-        <p>Total <span>€572.34</span></p>
+        <p>
+          Total <span>{{ currency }}{{ totalSum.toFixed(2) }}</span>
+        </p>
       </div>
     </div>
     <div class="cart-buttons">
@@ -132,4 +136,8 @@
   </div>
 </div>
 
-<ng-template #void>Not Found</ng-template>
+<ng-template #void>
+  <div class="total-info" style="text-align: center">
+    <span>Your card is empty</span>
+  </div>
+</ng-template>

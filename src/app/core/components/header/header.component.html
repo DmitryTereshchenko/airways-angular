@@ -56,16 +56,20 @@
         <button
           mat-stroked-button
           (click)="signIn()"
-          *ngIf="(userData$ | async) === null"
+          *ngIf="!window.localStorage.getItem('token')"
         >
           <mat-icon>person</mat-icon>
           Sign in
         </button>
-        <div class="auth-actions" *ngIf="userData$ | async">
+        <div class="auth-actions" *ngIf="window.localStorage.getItem('token')">
           <button mat-icon-button>
             <mat-icon>person</mat-icon>
           </button>
-          <button mat-icon-button routerLink="/cart" *ngIf="userData$ | async">
+          <button
+            mat-icon-button
+            routerLink="/cart"
+            *ngIf="window.localStorage.getItem('token')"
+          >
             <mat-icon>shopping_basket</mat-icon>
           </button>
         </div>

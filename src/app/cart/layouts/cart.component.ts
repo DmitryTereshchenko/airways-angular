@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { combineLatest, map, Subscription } from 'rxjs';
@@ -18,6 +18,7 @@ export interface Ticket {
   price: string;
   passengers: string;
 }
+
 const ELEMENT_DATA: Ticket[] = [
   {
     number: 0,
@@ -33,6 +34,7 @@ const ELEMENT_DATA: Ticket[] = [
     passengers: '1 x Adult',
   },
 ];
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -57,6 +59,7 @@ export class CartComponent implements OnInit, OnDestroy {
   public currency = '';
 
   private subscription = new Subscription();
+
   constructor(public ticketsFacade: TicketsFacade) {}
 
   public ngOnInit(): void {
@@ -72,25 +75,33 @@ export class CartComponent implements OnInit, OnDestroy {
       )
         .pipe(
           map(([basket, currency]) => {
-            const price = basket.flights[0].price[currency];
-            const digits = price.replace(/[^\d,]/g, '').replace(',', '.');
-            const currencyPrice = price.replace(/[^\p{Sc}]/gu, '');
-            const digitsWay = +digits * +basket.search.way;
-            const digitAdult = digitsWay * basket.search.passengers.adult;
-            const digitChild = digitsWay * basket.search.passengers.child * 0.7;
-            const digitInfant =
-              digitsWay * basket.search.passengers.infant * 0.4;
-            const taxAdult = digitAdult * 0.4;
-            const taxChild = digitChild * 0.3;
-            const taxInfat = digitInfant * 0.2;
-            const sumAdult = taxAdult + digitAdult;
-            const sumChild = taxChild + digitChild;
-            const sumInfant = taxInfat + digitInfant;
-            this.totalSum = sumAdult + sumChild + sumInfant;
-            if (currency === 'PLN') {
-              this.currency = 'zl';
-            } else {
-              this.currency = currencyPrice;
+            if (basket.flights.length === 0) {
+              return;
+            }
+            if (basket.flights.length > 0) {
+              const price = basket.flights[0].price[currency];
+              const price1 = basket.flights[1].price[currency];
+              const digits = price.replace(/[^\d,]/g, '').replace(',', '.');
+              const digits1 = price1.replace(/[^\d,]/g, '').replace(',', '.');
+              const currencyPrice = price.replace(/[^\p{Sc}]/gu, '');
+              const digitsWay = +digits + +digits1;
+              const digitAdult = digitsWay * basket.search.passengers.adult;
+              const digitChild =
+                digitsWay * basket.search.passengers.child * 0.7;
+              const digitInfant =
+                digitsWay * basket.search.passengers.infant * 0.4;
+              const taxAdult = digitAdult * 0.4;
+              const taxChild = digitChild * 0.3;
+              const taxInfat = digitInfant * 0.2;
+              const sumAdult = taxAdult + digitAdult;
+              const sumChild = taxChild + digitChild;
+              const sumInfant = taxInfat + digitInfant;
+              this.totalSum = sumAdult + sumChild + sumInfant;
+              if (currency === 'PLN') {
+                this.currency = 'zl';
+              } else {
+                this.currency = currencyPrice;
+              }
             }
           })
         )

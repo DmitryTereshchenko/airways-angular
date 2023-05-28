@@ -70,4 +70,6 @@ export class HeaderComponent {
   public signIn(): void {
     this.authService.openAuthModal(AuthLayoutComponent);
   }
+
+  protected readonly window = window;
 }
