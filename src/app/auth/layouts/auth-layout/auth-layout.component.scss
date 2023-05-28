@@ -25,6 +25,19 @@
       background-color: whitesmoke;
     }
   }
+
+  @media (max-width: 500px) {
+    .auth-wrapper {
+      min-width: auto;
+      max-width: 320px;
+    }
+
+    ::ng-deep {
+      .form__row {
+        flex-direction: column;
+      }
+    }
+  }
 }
 
 .auth-wrapper {
