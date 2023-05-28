@@ -44,7 +44,15 @@
       align-items: center;
       letter-spacing: 0.5px;
     }
-
+    @media (max-width: 500px) {
+      .mat-mdc-cell{
+        font-size: 12px;
+        padding: 5px;
+      }
+      .mat-mdc-button:not(:disabled).add-new{
+        height: auto;
+      }
+    }
     .mat-mdc-table .mdc-data-table__row{
       height: 130px;
     }
@@ -127,4 +135,16 @@
 
 .flight{
   width: 200px;
+}
+
+@media (max-width: 700px) {
+  .trip-date-header, .trip-date, .type-trip-header, .type-trip, .passenger-header, .passenger{
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .total-info, .flight-number, .add-new{
+    font-size: 14px;
+  }
 }
