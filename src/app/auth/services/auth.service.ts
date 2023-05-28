@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ComponentType } from '@angular/cdk/overlay';
 import { User } from '../../shared/models/user.model';
 import { DialogService } from '../../core/services/dialog.service';
@@ -16,15 +15,14 @@ export class AuthService {
   public userData$ = new BehaviorSubject<UserData | null>(null);
   public selectedTabIndex$ = new BehaviorSubject<number>(0);
   private localStorageItemName = 'token';
+  private token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9' +
+    '.eyJmb28iOiJiYXIiLCJpYXQiOjE2ODUyOTcwMTd9.jxFRXq1iAb4Rm5nbABHrplxNWQLu-PynXL0uVIOZmbE';
 
-  constructor(
-    private router: Router,
-    private dialogService: DialogService,
-    private http: HttpClient
-  ) {}
+  constructor(private router: Router, private dialogService: DialogService) {}
 
-  public setToken(token: string): void {
-    localStorage.setItem(this.localStorageItemName, token);
+  public setToken(): void {
+    localStorage.setItem(this.localStorageItemName, this.token);
   }
 
   public getToken(): string | null {
@@ -32,7 +30,7 @@ export class AuthService {
   }
 
   public register(user: User): Observable<User> {
-    return this.http.post<User>('users', user);
+    return of(user);
   }
 
   public openAuthModal(
@@ -44,8 +42,6 @@ export class AuthService {
   }
 
   public login(form: LoginForm): Observable<LoginForm> {
-    return this.http.post<LoginForm>('login', form);
+    return of(form);
   }
-
-  public logout(): void {}
 }

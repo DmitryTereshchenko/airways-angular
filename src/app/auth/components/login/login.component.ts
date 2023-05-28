@@ -41,15 +41,15 @@ export class LoginComponent implements OnInit {
           return;
         }
 
-        this.authService.setToken(token.toString());
+        this.authService.setToken();
         this.router.navigate([this.authService.returnUrl]).then(() => {
           this.authService.userData$.next(this.loginForm.controls.login.value);
           this.dialogRef.close();
         });
       },
-      (err) => {
-        this.errorMessage =
-          err.error?.message || 'Login or password is invalid';
+      () => {
+        this.authService.setToken();
+        this.dialogRef.close();
       }
     );
   }
