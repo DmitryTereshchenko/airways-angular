@@ -11,6 +11,7 @@ import { MaterialModule } from '../material/material.module';
 import { PassengerDetailsComponent } from './layouts/passenger-details/passenger-details.component';
 import { SummaryComponent } from './layouts/summary/summary.component';
 import { SharedModule } from '../shared/shared.module';
+import { TicketToComponent } from './components/ticket-to/ticket-to.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
     EditComponent,
     PassengerDetailsComponent,
     SummaryComponent,
+    TicketToComponent,
   ],
   imports: [
     CommonModule,

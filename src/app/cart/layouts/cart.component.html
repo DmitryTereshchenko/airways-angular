@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="ticketsFacade.selectGetBasket$ | async as basket">
   <div class="cart">
     <h2 class="title">Cart</h2>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

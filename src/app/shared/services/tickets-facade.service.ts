@@ -2,11 +2,17 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addSearchInfo } from '../../store/actions/add-search.actions';
 import { PassengersPage } from '../models/ticket-state';
+import {
+  changeDateOnTicketsFrom,
+  changeDateOnTicketsTo,
+} from '../../store/actions/get-tickets.actions';
 import { loadChangeCurrencys } from '../../store/actions/change-currency.actions';
 import {
   selectChangeCurrency,
   selectFlights,
   selectGetBasket,
+  selectGetDateFrom,
+  selectGetDateTo,
   selectGetPassengers,
   selectGetSearch,
   selectGetSearchDateEnd,
@@ -40,6 +46,8 @@ export class TicketsFacade {
   public searchTo$ = this.store.select(selectGetSearchTo);
   public passengers$ = this.store.select(selectGetPassengers);
   public selectGetBasket$ = this.store.select(selectGetBasket);
+  public selectGetDateFrom$ = this.store.select(selectGetDateFrom);
+  public selectGetDateTo$ = this.store.select(selectGetDateTo);
 
   constructor(private store: Store) {}
 
@@ -57,5 +65,11 @@ export class TicketsFacade {
 
   public addPassengersPage(passengers: PassengersPage): void {
     this.store.dispatch(loadAddPassengers({ passengers }));
+  }
+  public changeDateFrom(dateFrom: Date): void {
+    this.store.dispatch(changeDateOnTicketsFrom({ dateFrom }));
+  }
+  public changeDateTo(dateTo: Date): void {
+    this.store.dispatch(changeDateOnTicketsTo({ dateTo }));
   }
 }

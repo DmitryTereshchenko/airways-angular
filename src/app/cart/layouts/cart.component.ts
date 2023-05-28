@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
+import { TicketsFacade } from '../../shared/services/tickets-facade.service';
 
 export interface Ticket {
   number: number;
@@ -63,6 +64,7 @@ export class CartComponent {
   public dataSource = new MatTableDataSource<Ticket>(ELEMENT_DATA);
   public selection = new SelectionModel<Ticket>(true, []);
 
+  constructor(public ticketsFacade: TicketsFacade) {}
   public isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;

@@ -415,8 +415,8 @@ export const initialState: TicketState = {
       way: '',
       from: '',
       to: '',
-      dateStart: new Date(),
-      dateEnd: new Date(),
+      dateStart: null,
+      dateEnd: null,
       passengers: {
         adult: 0,
         child: 0,
@@ -440,20 +440,14 @@ export const reducer = createReducer(
     changeDateOnTicketsTo,
     (state, action): TicketState => ({
       ...state,
-      ticketsTo: state.ticketsTo.map((ticket) => ({
-        ...ticket,
-        date: action.date,
-      })),
+      dateTo: action.dateTo,
     })
   ),
   on(
     changeDateOnTicketsFrom,
     (state, action): TicketState => ({
       ...state,
-      ticketsFrom: state.ticketsFrom.map((ticket) => ({
-        ...ticket,
-        date: action.date,
-      })),
+      dateFrom: action.dateFrom,
     })
   ),
   on(
