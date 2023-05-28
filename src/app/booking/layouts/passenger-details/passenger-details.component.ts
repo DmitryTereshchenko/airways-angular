@@ -77,6 +77,7 @@ export class PassengerDetailsComponent implements OnInit {
       );
     }
     if (this.bookingForm.valid) {
+      this.ticketsFacade.addPassengersPage(this.bookingForm.value);
       this.router.navigate(['/booking/summary']);
     }
   }

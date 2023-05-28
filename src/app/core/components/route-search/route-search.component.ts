@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 import { ControlsOf, FormGroupTyped } from '../../../utils/form.util';
 import { SearchForm } from '../../../shared/models/search-form.model';
@@ -19,19 +20,11 @@ export class RouteSearchComponent implements OnInit {
     private router: Router
   ) {}
 
-  public get datePlusWeek(): Date {
-    const date = new Date();
-    date.setDate(date.getDate() + 7);
-
-    return date;
-  }
-
   public ngOnInit(): void {
     this.generateSearchForm();
   }
 
   public onSubmitForm(): void {
-    console.log(this.searchForm.getRawValue());
     this.ticketsFacade.addSearchData(this.searchForm.getRawValue());
     this.router.navigate(['/booking/flights']);
   }
@@ -45,8 +38,8 @@ export class RouteSearchComponent implements OnInit {
       way: ['2', Validators.required],
       from: ['', Validators.required],
       to: ['', Validators.required],
-      dateStart: [new Date(), Validators.required],
-      dateEnd: [this.datePlusWeek, Validators.required],
+      dateStart: [moment(), Validators.required],
+      dateEnd: [moment().add('day', 7), Validators.required],
       passengers: ['', Validators.required],
     });
   }

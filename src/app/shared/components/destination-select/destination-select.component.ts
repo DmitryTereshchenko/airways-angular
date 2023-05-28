@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { City } from '../../models/city.model';
 import { FormGroupTyped } from '../../../utils/form.util';
 import { SearchForm } from '../../models/search-form.model';
+import { TicketsFacade } from '../../services/tickets-facade.service';
 
 @Component({
   selector: 'app-destination-select',
@@ -14,12 +15,16 @@ export class DestinationSelectComponent implements OnInit {
   @Input() public isReverseButton!: boolean;
   public citiesList: City[] = [];
 
+  constructor(private ticketsFacade: TicketsFacade) {}
+
   public get formControlFrom(): FormControl {
     return this.form.controls.from;
   }
+
   public get formControlTo(): FormControl {
     return this.form.controls.to;
   }
+
   public get isReverseButtonDisabled(): boolean {
     return !this.formControlTo.value || !this.formControlFrom.value;
   }
@@ -47,5 +52,13 @@ export class DestinationSelectComponent implements OnInit {
       { name: 'Catania', shortCode: 'CTA', location: 'Fontanarossa, Italy' },
       { name: 'Dublin', shortCode: 'DUB', location: 'Ireland' },
     ];
+  }
+
+  public onSelectionChangeFrom(city: string): void {
+    this.ticketsFacade.addFromOnSearch(city);
+  }
+
+  public onSelectionChangeTo(city: string): void {
+    this.ticketsFacade.addToOnSearch(city);
   }
 }

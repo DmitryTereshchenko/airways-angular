@@ -6,7 +6,15 @@ import {
   changeDateOnTicketsTo,
 } from '../actions/get-tickets.actions';
 import { loadChangeCurrencys } from '../actions/change-currency.actions';
-import { addSearchInfo } from '../actions/add-search.actions';
+import {
+  addSearchInfo,
+  loadAddDateFrom,
+  loadAddDateTo,
+  loadAddFrom,
+  loadAddTo,
+  loadPassengers,
+} from '../actions/add-search.actions';
+import { loadAddPassengers } from '../actions/add-passengers.actions';
 
 export const initialState: TicketState = {
   dateFrom: new Date('2023-03-12'),
@@ -414,13 +422,19 @@ export const initialState: TicketState = {
       way: '',
       from: '',
       to: '',
-      dateStart: new Date(),
-      dateEnd: new Date(),
+      dateStart: null,
+      dateEnd: null,
       passengers: {
         adult: 0,
         child: 0,
         infant: 0,
       },
+    },
+    passengers: {
+      email: '',
+      phoneNumber: 0,
+      countryCode: '',
+      passengers: [],
     },
   },
   error: null,
@@ -433,20 +447,14 @@ export const reducer = createReducer(
     changeDateOnTicketsTo,
     (state, action): TicketState => ({
       ...state,
-      ticketsTo: state.ticketsTo.map((ticket) => ({
-        ...ticket,
-        date: action.date,
-      })),
+      dateTo: action.dateTo,
     })
   ),
   on(
     changeDateOnTicketsFrom,
     (state, action): TicketState => ({
       ...state,
-      ticketsFrom: state.ticketsFrom.map((ticket) => ({
-        ...ticket,
-        date: action.date,
-      })),
+      dateFrom: action.dateFrom,
     })
   ),
   on(
@@ -462,7 +470,7 @@ export const reducer = createReducer(
       ...state,
       basket: {
         ...state.basket,
-        flights: [...state.basket.flights, ...action.flights],
+        flights: [...action.flights],
       },
     })
   ),
@@ -473,6 +481,87 @@ export const reducer = createReducer(
       basket: {
         ...state.basket,
         search: form,
+      },
+    })
+  ),
+  on(
+    loadAddPassengers,
+    (state, action): TicketState => ({
+      ...state,
+      basket: {
+        ...state.basket,
+        passengers: {
+          ...state.basket.passengers,
+          ...action.passengers,
+        },
+      },
+    })
+  ),
+  on(
+    loadAddDateTo,
+    (state, action): TicketState => ({
+      ...state,
+      basket: {
+        ...state.basket,
+        search: {
+          ...state.basket.search,
+          dateStart: action.dateTo,
+        },
+      },
+    })
+  ),
+  on(
+    loadAddFrom,
+    (state, action): TicketState => ({
+      ...state,
+      basket: {
+        ...state.basket,
+        search: {
+          ...state.basket.search,
+          from: action.from,
+        },
+      },
+    })
+  ),
+  on(
+    loadAddTo,
+    (state, action): TicketState => ({
+      ...state,
+      basket: {
+        ...state.basket,
+        search: {
+          ...state.basket.search,
+          to: action.to,
+        },
+      },
+    })
+  ),
+  on(
+    loadPassengers,
+    (state, action): TicketState => ({
+      ...state,
+      basket: {
+        ...state.basket,
+        search: {
+          ...state.basket.search,
+          passengers: {
+            ...state.basket.search.passengers,
+            ...action.passengers,
+          },
+        },
+      },
+    })
+  ),
+  on(
+    loadAddDateFrom,
+    (state, action): TicketState => ({
+      ...state,
+      basket: {
+        ...state.basket,
+        search: {
+          ...state.basket.search,
+          dateEnd: action.dateFrom,
+        },
       },
     })
   )

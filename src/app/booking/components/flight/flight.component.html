@@ -2,32 +2,33 @@
   [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
 ></app-edit>
 <app-ticket
-  [ticketsData]="(ticketsFacade.from$ | async) ?? []"
+  [ticketsData]="(ticketsFacade.to$ | async) ?? []"
   [currency]="(ticketsFacade.currency$ | async) ?? 'EUR'"
   [image]="svgFrom"
   [imageTimeTravel]="svgTimeFrom"
   [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
   [dateFrom]="
-    (ticketsFacade.selectGetSearchDateStart$ | async) ?? searchData.dateStart
+    (ticketsFacade.selectGetDateFrom$ | async) ?? searchData.dateStart
   "
-  (isEditClick)="onEdit($event)"
+  (isEditClick)="onEditFrom($event)"
   [searchFrom]="from"
   [searchTo]="to"
+  (dataFrom)="getDataFrom($event)"
 ></app-ticket>
-<app-ticket
+<app-ticket-to
   *ngIf="way === '2'"
-  [ticketsData]="(ticketsFacade.to$ | async) ?? []"
+  [ticketsData]="(ticketsFacade.from$ | async) ?? []"
   [currency]="(ticketsFacade.currency$ | async) ?? 'EUR'"
   [image]="svgTo"
   [imageTimeTravel]="svgTimeTo"
   [searchData]="(ticketsFacade.selectGetSearch$ | async) ?? searchData"
-  [dateFrom]="
-    (ticketsFacade.selectGetSearchDateEnd$ | async) ?? searchData.dateStart
-  "
-  (isEditClick)="onEdit($event)"
+  [dateFrom]="(ticketsFacade.selectGetDateTo$ | async) ?? searchData.dateStart"
+  (isEditToClick)="onEditTo($event)"
   [searchFrom]="to"
   [searchTo]="from"
-></app-ticket>
+  (dataTo)="getDataTo($event)"
+></app-ticket-to>
+
 <div class="buttons">
   <button
     (click)="locationBack()"
@@ -38,11 +39,12 @@
     Back
   </button>
   <button
-    [disabled]="isEditTo"
+    [disabled]="isDisabledButton"
     routerLink="/booking/details"
     mat-raised-button
     color="primary"
     class="buttons__continue"
+    (click)="dispatchOnClick()"
   >
     Continue
   </button>

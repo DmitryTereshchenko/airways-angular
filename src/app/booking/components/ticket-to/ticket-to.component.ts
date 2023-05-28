@@ -6,17 +6,17 @@ import {
   Output,
 } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import * as moment from 'moment';
+import * as moment from 'moment/moment';
 import { TicketData } from '../../constants/ticket-data';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 import { SearchForm } from '../../../shared/models/search-form.model';
 
 @Component({
-  selector: 'app-ticket',
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.scss'],
+  selector: 'app-ticket-to',
+  templateUrl: './ticket-to.component.html',
+  styleUrls: ['./ticket-to.component.scss'],
 })
-export class TicketComponent implements OnChanges {
+export class TicketToComponent implements OnChanges {
   @Input() public ticketsData!: TicketData[];
   @Input() public image!: string;
   @Input() public imageTimeTravel!: string;
@@ -25,8 +25,8 @@ export class TicketComponent implements OnChanges {
   @Input() public dateFrom!: Date;
   @Input() public searchTo!: string;
   @Input() public searchFrom!: string;
-  @Output() public isEditClick = new EventEmitter<boolean>();
-  @Output() public dataFrom = new EventEmitter<TicketData>();
+  @Output() public isEditToClick = new EventEmitter<boolean>();
+  @Output() public dataTo = new EventEmitter<TicketData>();
   private numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
   public data: TicketData = {
@@ -70,11 +70,11 @@ export class TicketComponent implements OnChanges {
 
   public dispatchTicketsAndChangeVisible(): void {
     if (this.isSliderVisible) {
-      this.ticketsFacade.addDateToOnSearch(this.data.date);
-      this.dataFrom.emit(this.data);
+      this.ticketsFacade.addDateFromOnSearch(this.data.date);
+      this.dataTo.emit(this.data);
     }
     this.isSliderVisible = !this.isSliderVisible;
-    this.isEditClick.emit(this.isSliderVisible);
+    this.isEditToClick.emit(this.isSliderVisible);
   }
 
   public changeFlightsVisibility(): void {

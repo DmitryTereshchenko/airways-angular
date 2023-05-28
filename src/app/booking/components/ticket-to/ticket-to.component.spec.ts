@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PassengerItemComponent } from './passenger-item.component';
+import { TicketToComponent } from './ticket-to.component';
 
-describe('PassengerItemComponent', () => {
-  let component: PassengerItemComponent;
-  let fixture: ComponentFixture<PassengerItemComponent>;
+describe('TicketToComponent', () => {
+  let component: TicketToComponent;
+  let fixture: ComponentFixture<TicketToComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PassengerItemComponent],
+      declarations: [TicketToComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PassengerItemComponent);
+    fixture = TestBed.createComponent(TicketToComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
