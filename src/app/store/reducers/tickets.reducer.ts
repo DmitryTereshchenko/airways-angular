@@ -27,10 +27,10 @@ export const initialState: TicketState = {
       departureTimeFrom: '8:40',
       departureTimeTo: '11:30',
       price: {
-        EUR: '€147.40',
-        USA: '$159,19',
-        RUB: '₽12 418,45',
-        PLN: 'zł667,72',
+        EUR: '',
+        USA: '',
+        RUB: '',
+        PLN: '',
       },
       seats: 100,
       flightCode: 'FR 1925',
@@ -97,7 +97,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '14:20',
       departureTimeTo: '16:30',
       price: {
-        EUR: '€110.30',
+        EUR: '€110,30',
         USA: '$120,23',
         RUB: '₽9 495,73',
         PLN: 'zł497,45',
@@ -111,7 +111,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '8:40',
       departureTimeTo: '11:10',
       price: {
-        EUR: '€145.30',
+        EUR: '€145,30',
         USA: '$158,38',
         RUB: '₽12 508,88',
         PLN: 'zł655,3',
@@ -139,7 +139,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '9:35',
       departureTimeTo: '11:35',
       price: {
-        EUR: '€111.30',
+        EUR: '€111,30',
         USA: '$121,32',
         RUB: '₽9 581,82',
         PLN: 'zł501,96',
@@ -153,7 +153,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '11:20',
       departureTimeTo: '13:10',
       price: {
-        EUR: '€140.50',
+        EUR: '€140,50',
         USA: '$153,15',
         RUB: '₽12 095,65',
         PLN: 'zł633,65',
@@ -195,7 +195,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '11:30',
       departureTimeTo: '13:50',
       price: {
-        EUR: '€115.25',
+        EUR: '€115,25',
         USA: '$125,62',
         RUB: '₽9 921,87',
         PLN: 'zł519,78',
@@ -209,7 +209,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '6:40',
       departureTimeTo: '8:50',
       price: {
-        EUR: '€85.92',
+        EUR: '€85,92',
         USA: '$93,65',
         RUB: '₽7 396,85',
         PLN: 'zł387,5',
@@ -225,10 +225,10 @@ export const initialState: TicketState = {
       departureTimeFrom: '8:40',
       departureTimeTo: '11:30',
       price: {
-        EUR: '€147.40',
-        USA: '$159,19',
-        RUB: '₽12 418,45',
-        PLN: 'zł667,72',
+        EUR: '',
+        USA: '',
+        RUB: '',
+        PLN: '',
       },
       seats: 100,
       flightCode: 'FR 1925',
@@ -239,7 +239,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '6:30',
       departureTimeTo: '9:10',
       price: {
-        EUR: '€139.30',
+        EUR: '€139,30',
         USA: '$151,84',
         RUB: '₽11 992,34',
         PLN: 'zł628,24',
@@ -253,7 +253,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '18:00',
       departureTimeTo: '20:10',
       price: {
-        EUR: '€143.20',
+        EUR: '€143,20',
         USA: '$156,09',
         RUB: '₽12 328,09',
         PLN: 'zł645,83',
@@ -295,7 +295,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '14:20',
       departureTimeTo: '16:30',
       price: {
-        EUR: '€110.30',
+        EUR: '€110,30',
         USA: '$120,23',
         RUB: '₽9 495,73',
         PLN: 'zł497,45',
@@ -309,7 +309,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '8:40',
       departureTimeTo: '11:10',
       price: {
-        EUR: '€145.30',
+        EUR: '€145,30',
         USA: '$158,38',
         RUB: '₽12 508,88',
         PLN: 'zł655,3',
@@ -323,7 +323,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '13:20',
       departureTimeTo: '15:30',
       price: {
-        EUR: '€140.11',
+        EUR: '€140,11',
         USA: '$152,72',
         RUB: '₽12 062,07',
         PLN: 'zł631,9',
@@ -351,7 +351,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '11:20',
       departureTimeTo: '12:10',
       price: {
-        EUR: '€140.50',
+        EUR: '€140,50',
         USA: '$153,15',
         RUB: '₽12 095,65',
         PLN: 'zł633,65',
@@ -365,7 +365,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '17:50',
       departureTimeTo: '19:40',
       price: {
-        EUR: '€133.15',
+        EUR: '€133,15',
         USA: '$145,13',
         RUB: '₽11 462,88',
         PLN: 'zł600,51',
@@ -393,7 +393,7 @@ export const initialState: TicketState = {
       departureTimeFrom: '11:30',
       departureTimeTo: '13:50',
       price: {
-        EUR: '€115.25',
+        EUR: '€115,25',
         USA: '$125,62',
         RUB: '₽9 921,87',
         PLN: 'zł519,78',
