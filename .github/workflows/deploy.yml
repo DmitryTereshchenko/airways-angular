@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - development
     paths-ignore:
       - '.github/workflows/*'
 env:
@@ -20,9 +21,9 @@ jobs:
           path: ~/.npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install deps
-        run: npm ci
-      - name: Build project
-        run: npm run build
+        run: |
+          npm ci
+          npm run build
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -37,8 +38,15 @@ jobs:
         with:
           name: build-files
           path: ${{ env.BASE_PATH }}
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ env.BASE_PATH }}
+          publish-dir: ${{ env.BASE_PATH }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

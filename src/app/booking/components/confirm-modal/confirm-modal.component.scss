@@ -1,0 +1,12 @@
+.confirm-modal {
+  min-width: 240px;
+  min-height: 300px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,46 @@
+:host {
+  ::ng-deep {
+    .mat-mdc-tab.mdc-tab {
+      flex: 1 1;
+    }
+
+    .mat-mdc-tab-header {
+      margin-bottom: 20px;
+    }
+
+    mat-form-field {
+      flex: 1;
+
+      &.ng-invalid.ng-touched .mat-icon {
+        color: red;
+      }
+    }
+
+    .mat-mdc-tab-list {
+      border: 1px solid #CECECE;
+      border-radius: 5px;
+    }
+
+    .mdc-tab--active {
+      background-color: whitesmoke;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .auth-wrapper {
+      min-width: auto;
+      max-width: 320px;
+    }
+
+    ::ng-deep {
+      .form__row {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.auth-wrapper {
+  padding: 32px 24px;
+  min-width: 350px;
+}
