@@ -4,6 +4,8 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { Router } from '@angular/router';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
+import phones from '../../../constants/phone-codes.json';
+import { CountryCode } from '../../../shared/models/country-code.model';
 
 @Component({
   selector: 'app-passenger-details',
@@ -13,6 +15,7 @@ import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 export class PassengerDetailsComponent implements OnInit {
   public bookingForm!: FormGroup;
   public passengerList: string[] = [];
+  public phoneCodes!: CountryCode[];
 
   public searchData = {
     way: '',
@@ -32,7 +35,9 @@ export class PassengerDetailsComponent implements OnInit {
     private location: Location,
     public ticketsFacade: TicketsFacade,
     private router: Router
-  ) {}
+  ) {
+    this.phoneCodes = phones;
+  }
 
   public ngOnInit(): void {
     this.ticketsFacade.passengers$.pipe(first()).subscribe((passengers) => {
@@ -45,7 +50,7 @@ export class PassengerDetailsComponent implements OnInit {
     this.bookingForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
-      countryCode: ['', [Validators.required]],
+      countryCode: ['+375', [Validators.required]],
       passengers: this.fb.array([]),
     });
     this.passengerForm();

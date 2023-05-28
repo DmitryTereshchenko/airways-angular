@@ -183,9 +183,13 @@
             <div class="booking-form-cell">
               <mat-form-field class="country-code">
                 <mat-label>Country code</mat-label>
-                <mat-select formControlName="countryCode" required>
-                  <mat-option value="one">Belarus(+375)</mat-option>
-                  <mat-option value="two">Poland(+48)</mat-option>
+                <mat-select formControlName="countryCode">
+                  <mat-option
+                    *ngFor="let phone of phoneCodes"
+                    [value]="phone.dial_code"
+                  >
+                    {{ phone.name }} ({{ phone.dial_code }})
+                  </mat-option>
                 </mat-select>
                 <mat-error
                   *ngIf="

@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import * as moment from 'moment';
+import moment from 'moment';
 import { TicketData } from '../../constants/ticket-data';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 import { SearchForm } from '../../../shared/models/search-form.model';

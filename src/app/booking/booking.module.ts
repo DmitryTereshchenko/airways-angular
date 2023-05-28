@@ -12,6 +12,7 @@ import { PassengerDetailsComponent } from './layouts/passenger-details/passenger
 import { SummaryComponent } from './layouts/summary/summary.component';
 import { SharedModule } from '../shared/shared.module';
 import { TicketToComponent } from './components/ticket-to/ticket-to.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TicketToComponent } from './components/ticket-to/ticket-to.component';
     PassengerDetailsComponent,
     SummaryComponent,
     TicketToComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     CommonModule,

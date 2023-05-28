@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { reducer } from './store/reducers/tickets.reducer';
 import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { CustomDateAdapter } from './utils/custom-date-adapter';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { CustomDateAdapter } from './utils/custom-date-adapter';
     BrowserModule,
     CoreModule,
     AppRoutingModule,
+    AuthModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({ tickets: reducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+import moment from 'moment';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 import { ControlsOf, FormGroupTyped } from '../../../utils/form.util';
 import { SearchForm } from '../../../shared/models/search-form.model';
