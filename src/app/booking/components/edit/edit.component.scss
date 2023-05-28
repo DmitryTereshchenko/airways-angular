@@ -9,6 +9,28 @@
       display: none;
     }
   }
+
+  @media (max-width: 1000px) {
+    .edit__form {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .edit__form {
+      ::ng-deep {
+        .destination-select {
+          flex-direction: column;
+        }
+      }
+    }
+
+    ::ng-deep {
+      .destination-info {
+        flex-direction: column;
+      }
+    }
+  }
 }
 .edit {
   display: flex;
