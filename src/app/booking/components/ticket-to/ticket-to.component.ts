@@ -28,27 +28,26 @@ export class TicketToComponent implements OnChanges {
   @Output() public isEditToClick = new EventEmitter<boolean>();
   @Output() public dataTo = new EventEmitter<TicketData>();
   private numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  public dates: Date[] = [];
 
   public data: TicketData = {
-    date: new Date(),
-    arrivalTime: '',
-    departureTimeFrom: '',
-    departureTimeTo: '',
+    date: moment(this.dateFrom).toDate(),
+    arrivalTime: '2h 40m',
+    departureTimeFrom: '6:30',
+    departureTimeTo: '9:10',
     price: {
-      EUR: '',
-      USA: '',
-      RUB: '',
-      PLN: '',
+      EUR: '€147,40',
+      USA: '$159,19',
+      RUB: '₽12 418,45',
+      PLN: 'zł667,72',
     },
-    seats: 0,
-    flightCode: '',
+    seats: 30,
+    flightCode: 'DL 876',
   };
-
   public isSliderVisible = true;
   public isFlightVisible = false;
 
   public tickets: TicketData[] = [];
-  public dates: Date[] = [];
 
   constructor(public ticketsFacade: TicketsFacade) {}
 

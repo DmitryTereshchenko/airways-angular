@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { combineLatest, map, Subscription } from 'rxjs';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
@@ -21,6 +21,7 @@ export class SummaryComponent implements OnInit, OnDestroy {
   public totalSum = 0;
   public currency = '';
   private subscription = new Subscription();
+
   constructor(
     private location: Location,
     public ticketsFacade: TicketsFacade
@@ -35,9 +36,11 @@ export class SummaryComponent implements OnInit, OnDestroy {
         .pipe(
           map(([basket, currency]) => {
             const price = basket.flights[0].price[currency];
+            const price1 = basket.flights[1].price[currency];
             const digits = price.replace(/[^\d,]/g, '').replace(',', '.');
+            const digits1 = price1.replace(/[^\d,]/g, '').replace(',', '.');
             const currencyPrice = price.replace(/[^\p{Sc}]/gu, '');
-            const digitsWay = +digits * +basket.search.way;
+            const digitsWay = +digits + +digits1;
             this.digitAdult = digitsWay * basket.search.passengers.adult;
             this.digitChild = digitsWay * basket.search.passengers.child * 0.7;
             this.digitInfant =
@@ -59,9 +62,11 @@ export class SummaryComponent implements OnInit, OnDestroy {
         .subscribe()
     );
   }
+
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
   public locationBack(): void {
     this.location.back();
   }
