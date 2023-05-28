@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkairways=self.webpackChunkairways||[]).push([[288],{7288:(e,n,u)=>{u.r(n),u.d(n,{NotFoundModule:()=>t});var d=u(6895),a=u(4650);let t=(()=>{class o{}return o.\u0275fac=function(s){return new(s||o)},o.\u0275mod=a.oAB({type:o}),o.\u0275inj=a.cJS({imports:[d.ez]}),o})()}}]);
