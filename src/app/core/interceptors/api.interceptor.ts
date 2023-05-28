@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
   private readonly apiURL =
-    'http://ec2-34-241-93-191.eu-west-1.compute.amazonaws.com/';
+    'https://ec2-52-31-76-72.eu-west-1.compute.amazonaws.com/';
 
   public intercept(
     request: HttpRequest<unknown>,
