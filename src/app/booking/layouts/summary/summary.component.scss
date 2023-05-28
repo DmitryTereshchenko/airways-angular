@@ -63,7 +63,6 @@ p {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
-  flex-direction: column;
 }
 
 .summary__ticket {
@@ -202,5 +201,7 @@ p {
 }
 
 @media (max-width: 500px) {
-
+  .summary {
+    flex-direction: column;
+  }
 }
