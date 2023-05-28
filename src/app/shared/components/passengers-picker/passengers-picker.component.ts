@@ -22,6 +22,7 @@ import { Subject } from 'rxjs';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { CdkOverlayOrigin } from '@angular/cdk/overlay';
 import { Passenger } from '../../models/passenger.model';
+import { TicketsFacade } from '../../services/tickets-facade.service';
 
 @Component({
   selector: 'app-passengers-picker',
@@ -70,7 +71,8 @@ export class PassengersPickerComponent
     private fb: FormBuilder,
     private _elementRef: ElementRef<HTMLElement>,
     private cdr: ChangeDetectorRef,
-    @Optional() @Self() public ngControl: NgControl
+    @Optional() @Self() public ngControl: NgControl,
+    private ticketsFacade: TicketsFacade
   ) {
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
@@ -85,6 +87,7 @@ export class PassengersPickerComponent
     if (this.isListVisible && !this.focused) {
       this.isListVisible = false;
       this.controlClosed.emit(this.passengers);
+      this.ticketsFacade.addPassengers(this.passengers);
     }
   }
 

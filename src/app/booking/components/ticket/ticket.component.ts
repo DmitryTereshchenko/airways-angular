@@ -6,6 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import * as moment from 'moment';
 import { TicketData } from '../../constants/ticket-data';
 import { TicketsFacade } from '../../../shared/services/tickets-facade.service';
 import { SearchForm } from '../../../shared/models/search-form.model';
@@ -54,9 +55,11 @@ export class TicketComponent implements OnChanges {
   public ngOnChanges(): void {
     this.dates = this.ticketsData.map((item, i) => {
       return new Date(
-        (item.date.setFullYear(this.dateFrom.getFullYear()),
-        item.date.setMonth(this.dateFrom.getMonth()),
-        item.date.setDate(this.dateFrom.getDate() + this.numbers[i]))
+        (item.date.setFullYear(moment(this.dateFrom).toDate().getFullYear()),
+        item.date.setMonth(moment(this.dateFrom).toDate().getMonth()),
+        item.date.setDate(
+          moment(this.dateFrom).toDate().getDate() + this.numbers[i]
+        ))
       );
     });
   }
