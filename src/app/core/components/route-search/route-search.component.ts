@@ -39,7 +39,7 @@ export class RouteSearchComponent implements OnInit {
       from: ['', Validators.required],
       to: ['', Validators.required],
       dateStart: [moment(), Validators.required],
-      dateEnd: [moment().add('day', 7), Validators.required],
+      dateEnd: [moment().add(7, 'day'), Validators.required],
       passengers: ['', Validators.required],
     });
   }
